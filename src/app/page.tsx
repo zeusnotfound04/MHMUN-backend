@@ -1,9 +1,9 @@
-import Image from "next/image";
+import RegistrationForm from "@/components/RegisterForm";
 
 export default function Home() {
   return (
-    <div className="">
-      
+    <div >
+      <RegistrationForm/>
     </div>
   );
 }
