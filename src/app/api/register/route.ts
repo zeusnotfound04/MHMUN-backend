@@ -1,3 +1,4 @@
+import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -27,10 +28,21 @@ export  async function POST(request: Request) {
         
         const { name, email, phone, school, formId } = validation.data;
 
-        const registration = await 
+        const participant = await prisma.participant.create({
+            data: {
+                name,
+                email,
+                phone,
+                school,
+                formId
+            }
+        })
+
+        console.log("Participant created:", participant)
+        NextResponse.json({ message: "Participant created successfully" }, { status: 201 })
     } catch (error :any) {
         console.error("Error in registration route:", error)
-        return new Response("Internal Server Error", { status: 500 })
+        return new Response("Internal Server Error", { status: 500 })   
         
     }
 
