@@ -14,3 +14,16 @@ datasource db {
   url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+
+
+
+model Participant {
+  id        String   @id @default(cuid())
+  name      String
+  school    String
+  email     String   @unique
+  formId    String   @unique
+  phone     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
