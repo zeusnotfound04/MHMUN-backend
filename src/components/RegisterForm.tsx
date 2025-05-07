@@ -7,7 +7,7 @@ import * as z from "zod"
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Globe, Check, User, MapPin, Mail, FileText, Phone } from "lucide-react"
-
+import axios from "axios"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -56,7 +56,10 @@ export default function RegistrationForm() {
     setIsSubmitting(true);
     try {
       console.log(values);
-      // Simulate API call
+       const response = await axios.post('/api/register', values);
+      if (response.status !== 200) throw new Error('Failed to submit');
+
+        
       await new Promise(resolve => setTimeout(resolve, 1500));
       toast.success("Registration submitted successfully!");
       setShowSuccess(true);

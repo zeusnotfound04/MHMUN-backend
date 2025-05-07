@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output = "../prisma/generated"
 }
 
 datasource db {
@@ -18,12 +18,13 @@ datasource db {
 
 
 model Participant {
-  id        String   @id @default(cuid())
-  name      String
-  school    String
-  email     String   @unique
-  formId    String   @unique
-  phone     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(cuid())
+  name        String
+  school      String
+  email       String   @unique
+  formId      String   @unique
+  phone       String
+  qrCode      String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

@@ -886,6 +886,7 @@ export namespace Prisma {
     email: string | null
     formId: string | null
     phone: string | null
+    qrCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -897,6 +898,7 @@ export namespace Prisma {
     email: string | null
     formId: string | null
     phone: string | null
+    qrCode: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -908,6 +910,7 @@ export namespace Prisma {
     email: number
     formId: number
     phone: number
+    qrCode: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -921,6 +924,7 @@ export namespace Prisma {
     email?: true
     formId?: true
     phone?: true
+    qrCode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -932,6 +936,7 @@ export namespace Prisma {
     email?: true
     formId?: true
     phone?: true
+    qrCode?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -943,6 +948,7 @@ export namespace Prisma {
     email?: true
     formId?: true
     phone?: true
+    qrCode?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1027,6 +1033,7 @@ export namespace Prisma {
     email: string
     formId: string
     phone: string
+    qrCode: string
     createdAt: Date
     updatedAt: Date
     _count: ParticipantCountAggregateOutputType | null
@@ -1055,6 +1062,7 @@ export namespace Prisma {
     email?: boolean
     formId?: boolean
     phone?: boolean
+    qrCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1066,6 +1074,7 @@ export namespace Prisma {
     email?: boolean
     formId?: boolean
     phone?: boolean
+    qrCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1077,6 +1086,7 @@ export namespace Prisma {
     email?: boolean
     formId?: boolean
     phone?: boolean
+    qrCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1088,11 +1098,12 @@ export namespace Prisma {
     email?: boolean
     formId?: boolean
     phone?: boolean
+    qrCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "school" | "email" | "formId" | "phone" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
+  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "school" | "email" | "formId" | "phone" | "qrCode" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
 
   export type $ParticipantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Participant"
@@ -1104,6 +1115,7 @@ export namespace Prisma {
       email: string
       formId: string
       phone: string
+      qrCode: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["participant"]>
@@ -1535,6 +1547,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Participant", 'String'>
     readonly formId: FieldRef<"Participant", 'String'>
     readonly phone: FieldRef<"Participant", 'String'>
+    readonly qrCode: FieldRef<"Participant", 'String'>
     readonly createdAt: FieldRef<"Participant", 'DateTime'>
     readonly updatedAt: FieldRef<"Participant", 'DateTime'>
   }
@@ -1924,6 +1937,7 @@ export namespace Prisma {
     email: 'email',
     formId: 'formId',
     phone: 'phone',
+    qrCode: 'qrCode',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2007,6 +2021,7 @@ export namespace Prisma {
     email?: StringFilter<"Participant"> | string
     formId?: StringFilter<"Participant"> | string
     phone?: StringFilter<"Participant"> | string
+    qrCode?: StringFilter<"Participant"> | string
     createdAt?: DateTimeFilter<"Participant"> | Date | string
     updatedAt?: DateTimeFilter<"Participant"> | Date | string
   }
@@ -2018,6 +2033,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    qrCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2026,6 +2042,7 @@ export namespace Prisma {
     id?: string
     email?: string
     formId?: string
+    qrCode?: string
     AND?: ParticipantWhereInput | ParticipantWhereInput[]
     OR?: ParticipantWhereInput[]
     NOT?: ParticipantWhereInput | ParticipantWhereInput[]
@@ -2034,7 +2051,7 @@ export namespace Prisma {
     phone?: StringFilter<"Participant"> | string
     createdAt?: DateTimeFilter<"Participant"> | Date | string
     updatedAt?: DateTimeFilter<"Participant"> | Date | string
-  }, "id" | "email" | "formId">
+  }, "id" | "email" | "formId" | "qrCode">
 
   export type ParticipantOrderByWithAggregationInput = {
     id?: SortOrder
@@ -2043,6 +2060,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    qrCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ParticipantCountOrderByAggregateInput
@@ -2060,6 +2078,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Participant"> | string
     formId?: StringWithAggregatesFilter<"Participant"> | string
     phone?: StringWithAggregatesFilter<"Participant"> | string
+    qrCode?: StringWithAggregatesFilter<"Participant"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Participant"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Participant"> | Date | string
   }
@@ -2071,6 +2090,7 @@ export namespace Prisma {
     email: string
     formId: string
     phone: string
+    qrCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2082,6 +2102,7 @@ export namespace Prisma {
     email: string
     formId: string
     phone: string
+    qrCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2093,6 +2114,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    qrCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2104,6 +2126,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    qrCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2115,6 +2138,7 @@ export namespace Prisma {
     email: string
     formId: string
     phone: string
+    qrCode: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2126,6 +2150,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    qrCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2137,6 +2162,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    qrCode?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2174,6 +2200,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    qrCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2185,6 +2212,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    qrCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2196,6 +2224,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    qrCode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
