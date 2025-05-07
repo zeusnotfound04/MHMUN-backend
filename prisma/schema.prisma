@@ -21,7 +21,7 @@ model Participant {
   id          String   @id @default(cuid())
   name        String
   school      String
-  email       String   @unique
+  email       String   
   formId      String   @unique
   phone       String
   qrCode      String   @unique
