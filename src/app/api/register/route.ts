@@ -68,11 +68,9 @@ export async function POST(request: Request) {
           );
         }
         
-        // Using the ufsUrl as recommended in the deprecation warning
         const qrImageUrl = uploadedFile.data.ufsUrl;
         console.log("QR Code image URL:", qrImageUrl);
     
-        // Remove qrImageUrl from data object since the column doesn't exist in the database yet
         const participant = await prisma.participant.create({
           data: {
             name,
@@ -81,16 +79,14 @@ export async function POST(request: Request) {
             school,
             formId,
             qrCode,
-            // qrImageUrl removed since the column doesn't exist in the database yet
           },
         });
     
-        // Return the QR image URL in the response even though we can't store it in the database
         return NextResponse.json(
           { 
             message: "Participant created successfully", 
             participant,
-            qrImageUrl // Include the URL in the response so the frontend can use it
+            qrImageUrl 
           },
           { status: 201 }
         );
