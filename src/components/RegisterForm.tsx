@@ -56,21 +56,19 @@ export default function RegistrationForm() {
     setIsSubmitting(true);
     try {
       console.log(values);
-       const response = await axios.post('/api/register', values);
-      if (response.status !== 200) throw new Error('Failed to submit');
-
-        
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      toast.success("Registration submitted successfully!");
+      const response = await axios.post('/api/register', values);
+      
+      // Show success message
+      toast.success("Registration successful! Redirecting to home page...");
+      
+      // Show success dialog
       setShowSuccess(true);
       
-      // Here you would actually send the data to your API
-      // const response = await fetch('/api/register', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(values)
-      // });
-      // if (!response.ok) throw new Error('Failed to submit');
+      // Redirect to home page after a short delay
+      setTimeout(() => {
+        window.location.href = '/'; // Redirect to home page
+      }, 3000);
+      
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");

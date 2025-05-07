@@ -127,7 +127,6 @@ exports.Prisma.ParticipantScalarFieldEnum = {
   email: 'email',
   formId: 'formId',
   phone: 'phone',
-  qrCode: 'qrCode',
   qrImageUrl: 'qrImageUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -141,11 +140,6 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
 };
 
 

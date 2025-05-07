@@ -78,7 +78,7 @@ export async function POST(request: Request) {
             phone,
             school,
             formId,
-            qrCode : qrImageUrl,
+            qrImageUrl,
           },
         });
     
