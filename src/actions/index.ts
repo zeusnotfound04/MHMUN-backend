@@ -19,7 +19,7 @@ try {
 
 export async function generateQRCodeWithFormId(formId: string): Promise<string> {
   const qrCode = uuidv4();
-  const qrData = `${process.env.BASE_URL}/participant/${qrCode}`;
+  const qrData = `${process.env.BASE_URL}/participants/${qrCode}`;
 
   const canvasWidth = 500;
   const canvasHeight = 650;
@@ -51,11 +51,11 @@ export async function generateQRCodeWithFormId(formId: string): Promise<string> 
   }
   ctx.textAlign = 'center';
   ctx.fillText(formId, canvasWidth / 2, 580); 
+  const imageBuffer = canvas.toBuffer('image/png')
 
-  const imageBuffer = canvas.toBuffer('image/png');
-  const file = new File([imageBuffer], `qr-${qrCode}.png`, {
-    type: 'image/png',
-  });
+  const file = new File([new Uint8Array(imageBuffer)], `qr-${qrCode}.png`, {
+  type: 'image/png',
+});
 
   const utapi = new UTApi();
   const uploadResponse = await utapi.uploadFiles([file]);
