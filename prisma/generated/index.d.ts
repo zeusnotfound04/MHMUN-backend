@@ -887,6 +887,10 @@ export namespace Prisma {
     formId: string | null
     phone: string | null
     qrImageUrl: string | null
+    committee: string | null
+    experience: string | null
+    countryPreferences: string | null
+    delegationType: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -899,6 +903,10 @@ export namespace Prisma {
     formId: string | null
     phone: string | null
     qrImageUrl: string | null
+    committee: string | null
+    experience: string | null
+    countryPreferences: string | null
+    delegationType: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -911,6 +919,10 @@ export namespace Prisma {
     formId: number
     phone: number
     qrImageUrl: number
+    committee: number
+    experience: number
+    countryPreferences: number
+    delegationType: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -925,6 +937,10 @@ export namespace Prisma {
     formId?: true
     phone?: true
     qrImageUrl?: true
+    committee?: true
+    experience?: true
+    countryPreferences?: true
+    delegationType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -937,6 +953,10 @@ export namespace Prisma {
     formId?: true
     phone?: true
     qrImageUrl?: true
+    committee?: true
+    experience?: true
+    countryPreferences?: true
+    delegationType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -949,6 +969,10 @@ export namespace Prisma {
     formId?: true
     phone?: true
     qrImageUrl?: true
+    committee?: true
+    experience?: true
+    countryPreferences?: true
+    delegationType?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1034,6 +1058,10 @@ export namespace Prisma {
     formId: string
     phone: string
     qrImageUrl: string
+    committee: string | null
+    experience: string | null
+    countryPreferences: string | null
+    delegationType: string | null
     createdAt: Date
     updatedAt: Date
     _count: ParticipantCountAggregateOutputType | null
@@ -1063,6 +1091,10 @@ export namespace Prisma {
     formId?: boolean
     phone?: boolean
     qrImageUrl?: boolean
+    committee?: boolean
+    experience?: boolean
+    countryPreferences?: boolean
+    delegationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1075,6 +1107,10 @@ export namespace Prisma {
     formId?: boolean
     phone?: boolean
     qrImageUrl?: boolean
+    committee?: boolean
+    experience?: boolean
+    countryPreferences?: boolean
+    delegationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1087,6 +1123,10 @@ export namespace Prisma {
     formId?: boolean
     phone?: boolean
     qrImageUrl?: boolean
+    committee?: boolean
+    experience?: boolean
+    countryPreferences?: boolean
+    delegationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1099,11 +1139,15 @@ export namespace Prisma {
     formId?: boolean
     phone?: boolean
     qrImageUrl?: boolean
+    committee?: boolean
+    experience?: boolean
+    countryPreferences?: boolean
+    delegationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "school" | "email" | "formId" | "phone" | "qrImageUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
+  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "school" | "email" | "formId" | "phone" | "qrImageUrl" | "committee" | "experience" | "countryPreferences" | "delegationType" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
 
   export type $ParticipantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Participant"
@@ -1116,6 +1160,10 @@ export namespace Prisma {
       formId: string
       phone: string
       qrImageUrl: string
+      committee: string | null
+      experience: string | null
+      countryPreferences: string | null
+      delegationType: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["participant"]>
@@ -1548,6 +1596,10 @@ export namespace Prisma {
     readonly formId: FieldRef<"Participant", 'String'>
     readonly phone: FieldRef<"Participant", 'String'>
     readonly qrImageUrl: FieldRef<"Participant", 'String'>
+    readonly committee: FieldRef<"Participant", 'String'>
+    readonly experience: FieldRef<"Participant", 'String'>
+    readonly countryPreferences: FieldRef<"Participant", 'String'>
+    readonly delegationType: FieldRef<"Participant", 'String'>
     readonly createdAt: FieldRef<"Participant", 'DateTime'>
     readonly updatedAt: FieldRef<"Participant", 'DateTime'>
   }
@@ -1938,6 +1990,10 @@ export namespace Prisma {
     formId: 'formId',
     phone: 'phone',
     qrImageUrl: 'qrImageUrl',
+    committee: 'committee',
+    experience: 'experience',
+    countryPreferences: 'countryPreferences',
+    delegationType: 'delegationType',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -1959,6 +2015,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -2022,6 +2086,10 @@ export namespace Prisma {
     formId?: StringFilter<"Participant"> | string
     phone?: StringFilter<"Participant"> | string
     qrImageUrl?: StringFilter<"Participant"> | string
+    committee?: StringNullableFilter<"Participant"> | string | null
+    experience?: StringNullableFilter<"Participant"> | string | null
+    countryPreferences?: StringNullableFilter<"Participant"> | string | null
+    delegationType?: StringNullableFilter<"Participant"> | string | null
     createdAt?: DateTimeFilter<"Participant"> | Date | string
     updatedAt?: DateTimeFilter<"Participant"> | Date | string
   }
@@ -2034,6 +2102,10 @@ export namespace Prisma {
     formId?: SortOrder
     phone?: SortOrder
     qrImageUrl?: SortOrder
+    committee?: SortOrderInput | SortOrder
+    experience?: SortOrderInput | SortOrder
+    countryPreferences?: SortOrderInput | SortOrder
+    delegationType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2049,6 +2121,10 @@ export namespace Prisma {
     email?: StringFilter<"Participant"> | string
     phone?: StringFilter<"Participant"> | string
     qrImageUrl?: StringFilter<"Participant"> | string
+    committee?: StringNullableFilter<"Participant"> | string | null
+    experience?: StringNullableFilter<"Participant"> | string | null
+    countryPreferences?: StringNullableFilter<"Participant"> | string | null
+    delegationType?: StringNullableFilter<"Participant"> | string | null
     createdAt?: DateTimeFilter<"Participant"> | Date | string
     updatedAt?: DateTimeFilter<"Participant"> | Date | string
   }, "id" | "formId">
@@ -2061,6 +2137,10 @@ export namespace Prisma {
     formId?: SortOrder
     phone?: SortOrder
     qrImageUrl?: SortOrder
+    committee?: SortOrderInput | SortOrder
+    experience?: SortOrderInput | SortOrder
+    countryPreferences?: SortOrderInput | SortOrder
+    delegationType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ParticipantCountOrderByAggregateInput
@@ -2079,6 +2159,10 @@ export namespace Prisma {
     formId?: StringWithAggregatesFilter<"Participant"> | string
     phone?: StringWithAggregatesFilter<"Participant"> | string
     qrImageUrl?: StringWithAggregatesFilter<"Participant"> | string
+    committee?: StringNullableWithAggregatesFilter<"Participant"> | string | null
+    experience?: StringNullableWithAggregatesFilter<"Participant"> | string | null
+    countryPreferences?: StringNullableWithAggregatesFilter<"Participant"> | string | null
+    delegationType?: StringNullableWithAggregatesFilter<"Participant"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Participant"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Participant"> | Date | string
   }
@@ -2091,6 +2175,10 @@ export namespace Prisma {
     formId: string
     phone: string
     qrImageUrl: string
+    committee?: string | null
+    experience?: string | null
+    countryPreferences?: string | null
+    delegationType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2103,6 +2191,10 @@ export namespace Prisma {
     formId: string
     phone: string
     qrImageUrl: string
+    committee?: string | null
+    experience?: string | null
+    countryPreferences?: string | null
+    delegationType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2115,6 +2207,10 @@ export namespace Prisma {
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
+    committee?: NullableStringFieldUpdateOperationsInput | string | null
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    countryPreferences?: NullableStringFieldUpdateOperationsInput | string | null
+    delegationType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2127,6 +2223,10 @@ export namespace Prisma {
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
+    committee?: NullableStringFieldUpdateOperationsInput | string | null
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    countryPreferences?: NullableStringFieldUpdateOperationsInput | string | null
+    delegationType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2139,6 +2239,10 @@ export namespace Prisma {
     formId: string
     phone: string
     qrImageUrl: string
+    committee?: string | null
+    experience?: string | null
+    countryPreferences?: string | null
+    delegationType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2151,6 +2255,10 @@ export namespace Prisma {
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
+    committee?: NullableStringFieldUpdateOperationsInput | string | null
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    countryPreferences?: NullableStringFieldUpdateOperationsInput | string | null
+    delegationType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2163,6 +2271,10 @@ export namespace Prisma {
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
+    committee?: NullableStringFieldUpdateOperationsInput | string | null
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    countryPreferences?: NullableStringFieldUpdateOperationsInput | string | null
+    delegationType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2182,6 +2294,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2193,6 +2320,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type ParticipantCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -2201,6 +2333,10 @@ export namespace Prisma {
     formId?: SortOrder
     phone?: SortOrder
     qrImageUrl?: SortOrder
+    committee?: SortOrder
+    experience?: SortOrder
+    countryPreferences?: SortOrder
+    delegationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2213,6 +2349,10 @@ export namespace Prisma {
     formId?: SortOrder
     phone?: SortOrder
     qrImageUrl?: SortOrder
+    committee?: SortOrder
+    experience?: SortOrder
+    countryPreferences?: SortOrder
+    delegationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2225,6 +2365,10 @@ export namespace Prisma {
     formId?: SortOrder
     phone?: SortOrder
     qrImageUrl?: SortOrder
+    committee?: SortOrder
+    experience?: SortOrder
+    countryPreferences?: SortOrder
+    delegationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2247,6 +2391,24 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2265,6 +2427,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -2281,6 +2447,20 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2320,6 +2500,34 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {

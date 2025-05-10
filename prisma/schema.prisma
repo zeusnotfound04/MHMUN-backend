@@ -18,13 +18,17 @@ datasource db {
 
 
 model Participant {
-  id          String   @id @default(uuid())
-  name        String
-  school      String
-  email       String   
-  formId      String   @unique
-  phone       String
-  qrImageUrl  String  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                 String   @id @default(uuid())
+  name               String
+  school             String
+  email              String   
+  formId             String   @unique
+  phone              String
+  qrImageUrl         String  
+  committee          String?  
+  experience         String?
+  countryPreferences String?
+  delegationType    String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }
