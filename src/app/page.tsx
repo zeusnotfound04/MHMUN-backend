@@ -1,19 +1,22 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Globe } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className="relative min-h-screen overflow-hidden bg-black bg-[radial-gradient(ellipse_at_top,rgba(16,18,66,0.4),transparent_50%)]">
-      <div className="relative z-10 flex flex-col items-center justify-center w-full h-screen px-4">
+      <div className="relative z-20 flex flex-col items-center justify-center w-full h-screen px-4">
         {/* Background sparkles effect */}
         <SparklesCore
           background="black"
           minSize={0.3}
           maxSize={1.2}
           particleDensity={120}
-          className="w-full h-full absolute inset-0"
+          className="w-full h-full absolute inset-0 pointer-events-none z-0"
           particleColor="#FFFFFF"
           speed={0.3}
         />
@@ -29,13 +32,13 @@ export default function Home() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              onClick={() => window.location.href = "/register"}
+              onClick={() => router.push("/register")}
               className="px-8 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors"
             >
               Register Now
             </Button>
             <Button
-              onClick={() => window.location.href = "/participants"}
+              onClick={() => router.push("/participants")}
               className="px-8 py-3 rounded-xl border border-indigo-500/40 text-indigo-300 hover:bg-indigo-900/30 transition-colors"
             >
               View Participants
