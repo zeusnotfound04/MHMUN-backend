@@ -5,6 +5,7 @@ import { Globe, User, MapPin, Mail, FileText, Phone, Building, Flag, UserCircle,
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useParticipant } from "@/lib/participants";
+import Image from "next/image";
 
 export default function ParticipantDetails() {
   const params = useParams();
@@ -199,7 +200,7 @@ export default function ParticipantDetails() {
                   {participant.qrImageUrl && (
                     <div className="mt-4 md:mt-6 flex flex-col items-center">
                       <h3 className="text-base md:text-lg font-medium text-white mb-3 md:mb-4">Registration QR Code</h3>
-                      <img 
+                      <Image 
                         src={participant.qrImageUrl} 
                         alt="Registration QR Code"
                         className="w-32 h-32 md:w-48 md:h-48 rounded-lg border-2 border-indigo-500/30" 
