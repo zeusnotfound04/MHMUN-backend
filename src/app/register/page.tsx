@@ -48,10 +48,7 @@ export default function Page() {
           <Globe className="w-6 h-6 text-purple-400" />
         </div>
       </div>
-      
-      {/* Removed the header with heading as requested */}
-      
-      {/* Main content */}
+      {/* Main content area */}
       <div className="container mx-auto min-h-screen flex items-center justify-center py-20 px-4 relative z-10">
         <div className="w-full max-w-3xl bg-black/30 backdrop-blur-md rounded-xl border border-indigo-500/20 p-8 shadow-xl shadow-indigo-500/10">
           
@@ -59,7 +56,6 @@ export default function Page() {
         </div>
       </div>
       
-      {/* Radial Gradients to enhance cosmic effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 pointer-events-none"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(79,70,229,0.15),transparent_50%)] pointer-events-none"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(147,197,253,0.1),transparent_50%)] pointer-events-none"></div>

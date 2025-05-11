@@ -14,7 +14,7 @@ try {
     console.warn('Poppins-Bold.ttf not found. Will use system fonts instead.');
   }
 } catch (error) {
-  console.warn('Could not load custom fonts:', error);
+  console.error('Error loading Poppins font:', error);
 }
 
 export async function generateQRCodeWithFormId(formId: string): Promise<string> {

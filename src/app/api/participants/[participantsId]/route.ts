@@ -39,10 +39,10 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { participantsId: string } }
+  { params }: RouteParams 
 ) {
   try {
-    const { participantsId } = params;
+    const { participantsId } = await params;
     const body = await req.json();
     
     const existingParticipant = await prisma.participant.findUnique({
@@ -84,10 +84,10 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { participantsId: string } }
+  { params }:RouteParams
 ) {
   try {
-    const { participantsId } = params;
+    const { participantsId } = await params;
 
     const existingParticipant = await prisma.participant.findUnique({
       where: {
