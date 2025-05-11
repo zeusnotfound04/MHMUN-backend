@@ -52,13 +52,12 @@ export async function generateQRCodeWithFormId(formId: string, participantId: st
   ctx.strokeStyle = '#e0e0e0';
   ctx.lineWidth = 1;
   ctx.strokeRect(qrX - 2, qrY - 2, qrCanvas.width + 4, qrCanvas.width + 4);
-
   // Text styling
   ctx.fillStyle = '#000000';
   try {
-    ctx.font = 'bold 40px Poppins, Arial, sans-serif';
+    ctx.font = 'bold 55px Poppins, Arial, sans-serif';
   } catch (error) {
-    ctx.font = 'bold 40px Arial, sans-serif';
+    ctx.font = 'bold 60px Arial, sans-serif';
   }
   ctx.textAlign = 'center';
   ctx.fillText(formId, canvasWidth / 2, 610);
