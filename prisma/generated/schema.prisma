@@ -15,6 +15,30 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id        String    @id @default(uuid())
+  password  String
+  username  String    @unique
+  role      Role      @default(USER)
+  createdAt DateTime  @default(now())
+  sessions  Session[]
+
+  @@index([username])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model Participant {
   id             String   @id @unique
   name           String
