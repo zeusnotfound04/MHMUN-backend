@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateQRCodeWithFormId } from "@/actions";
 import { z } from "zod";
 
-// Define the database Participant model
 interface ParticipantModel {
   id: string;
   name: string;
@@ -20,7 +20,6 @@ interface ParticipantModel {
   updatedAt: Date;
 }
 
-// Define the shape of participant data from form submission
 const formSchema = z.object({
     name: z.string().min(1),
     school: z.string().min(1),
@@ -33,7 +32,6 @@ const formSchema = z.object({
     delegationType: z.string().optional()
 });
 
-// Type for parsed form data
 type ParticipantFormData = z.infer<typeof formSchema>;
 
 // Type for search parameters in GET requests
