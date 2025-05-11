@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createCanvas, registerFont } from 'canvas';
 import QRCode from 'qrcode';
 import { UTApi } from 'uploadthing/server';
