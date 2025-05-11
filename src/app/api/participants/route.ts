@@ -3,6 +3,24 @@ import { prisma } from "@/lib/prisma";
 import { generateQRCodeWithFormId } from "@/actions";
 import { z } from "zod";
 
+// Define the database Participant model
+interface ParticipantModel {
+  id: string;
+  name: string;
+  school: string;
+  email: string;
+  phone: string;
+  qrImageUrl: string;
+  formId: string;
+  committee: string | null;
+  experience: string | null;
+  countryPreferences: string | null;
+  delegationType: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Define the shape of participant data from form submission
 const formSchema = z.object({
     name: z.string().min(1),
     school: z.string().min(1),
@@ -13,7 +31,39 @@ const formSchema = z.object({
     experience: z.string().optional(),
     countryPreferences: z.string().optional(),
     delegationType: z.string().optional()
-  });
+});
+
+// Type for parsed form data
+type ParticipantFormData = z.infer<typeof formSchema>;
+
+// Type for search parameters in GET requests
+interface ParticipantSearchParams {
+  school?: string;
+  name?: string;
+  committee?: string;
+}
+
+// Type for search where clause
+interface ParticipantWhereInput {
+  school?: {
+    contains: string;
+    mode: 'insensitive';
+  };
+  name?: {
+    contains: string;
+    mode: 'insensitive';
+  };
+  committee?: string;
+}
+
+// Type for API responses
+interface ApiResponse<T> {
+  message?: string;
+  error?: string;
+  details?: unknown;
+  participant?: T;
+  qrImageUrl?: string;
+}
 
 export async function GET(req: NextRequest) {
   try {
@@ -22,7 +72,7 @@ export async function GET(req: NextRequest) {
     const name = url.searchParams.get("name");
     const committee = url.searchParams.get("committee");
     
-    const whereClause: any = {};
+    const whereClause: ParticipantWhereInput = {};
     
     if (school) {
       whereClause.school = {
@@ -52,15 +102,18 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(participants);
   } catch (error) {
     console.error("Error fetching participants:", error);
-    return NextResponse.json(
+    return NextResponse.json<ApiResponse<never>>(
       { error: "Failed to retrieve participants" },
       { status: 500 }
     );
   }
 }
 
-
-
+// Type for Prisma errors
+interface PrismaError {
+  code?: string;
+  message: string;
+}
 
 export async function POST(request: Request) {
   try {
@@ -69,7 +122,7 @@ export async function POST(request: Request) {
 
     const validation = formSchema.safeParse(body);
     if (!validation.success) {
-      return NextResponse.json(
+      return NextResponse.json<ApiResponse<never>>(
         {
           error: "Invalid form data",
           details: validation.error.errors
@@ -88,7 +141,7 @@ export async function POST(request: Request) {
       experience, 
       countryPreferences, 
       delegationType 
-    } = validation.data;
+    }: ParticipantFormData = validation.data;
     
     console.log("Form data:", validation.data);
 
@@ -110,7 +163,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(
+    return NextResponse.json<ApiResponse<ParticipantModel>>(
       {
         message: "Participant created successfully",
         participant,
@@ -118,8 +171,21 @@ export async function POST(request: Request) {
       },
       { status: 201 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in registration route:", error);
-    return new Response("Internal Server Error", { status: 500 });
+    
+    // Type guard for Prisma errors
+    const prismaError = error as PrismaError;
+    if (prismaError.code === 'P2002') {
+      return NextResponse.json<ApiResponse<never>>(
+        { error: "A participant with this form ID already exists" },
+        { status: 409 }
+      );
+    }
+    
+    return NextResponse.json<ApiResponse<never>>(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
