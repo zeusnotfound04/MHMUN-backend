@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Globe, Search, User } from "lucide-react";
 import Link from "next/link";
@@ -20,18 +20,29 @@ const committees = [
 ];
 
 
-export default function ParticipantsList() {
+// Component to handle session and authentication logic
+function ParticipantsContent() {
   const [searchQuery, setSearchQuery] = useState("");
-
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  
   // Using TanStack Query to fetch participants with automatic caching
   const { data: participants = [], isLoading, error: fetchError } = useParticipants();
   const error = fetchError ? 'Could not load participants. Please try again later.' : null;
 
-   const router = useRouter();
-  const { data } = useSession();
+  // Check if session is loading
+  if (status === "loading") {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="w-12 h-12 border-t-2 border-indigo-500 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
   
-  if (data?.user?.role === "ADMIN") {
+  // Redirect admin users
+  if (session?.user?.role === "ADMIN") {
     router.push("/login");
+    return null;
   }
   // Filter participants based on search query
   const filteredParticipants = participants.filter(participant =>
@@ -39,7 +50,6 @@ export default function ParticipantsList() {
     participant.school.toLowerCase().includes(searchQuery.toLowerCase()) ||
     (participant.committee && participant.committee.toLowerCase().includes(searchQuery.toLowerCase()))
   );
-
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black bg-[radial-gradient(ellipse_at_top,rgba(16,18,66,0.4),transparent_50%)]">
@@ -179,7 +189,21 @@ export default function ParticipantsList() {
             </div>
           )}
         </motion.div>
+      </div>    </div>
+  );
+}
+
+// Main component with Suspense boundary for session handling
+export default function ParticipantsList() {
+  return (
+    <Suspense fallback={
+      <div className="relative min-h-screen overflow-hidden bg-black bg-[radial-gradient(ellipse_at_top,rgba(16,18,66,0.4),transparent_50%)]">
+        <div className="flex items-center justify-center h-screen">
+          <div className="w-12 h-12 border-t-2 border-indigo-500 rounded-full animate-spin"></div>
+        </div>
       </div>
-    </div>
+    }>
+      <ParticipantsContent />
+    </Suspense>
   );
 }
