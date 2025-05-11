@@ -62,7 +62,6 @@ export const authOptions: NextAuthOptions = {
             username : true,
             role : true,
             password : true,
-            pfpUrl : true,
           }
         });
 
@@ -82,41 +81,7 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    async signIn({ account, profile }: { account: OAuthAccount | null; profile?: GoogleProfile }) {
-      if (account?.provider === 'google' && profile?.email) {
-        try {
-          
-          const existingUser = await prisma.user.findUnique({
-            where: { email: profile.email },
-            select: { id: true, password: true, username: true }
-          });
     
-          
-          if (!existingUser) {
-            return `/register/google?email=${encodeURIComponent(profile.email)}&name=${encodeURIComponent(profile.name || "")}&providerAccountId=${account.providerAccountId}`;
-          }
-          
-          if (!existingUser.password || existingUser.password === "" || !existingUser.username) {
-            return `/register/google?email=${encodeURIComponent(profile.email)}&name=${encodeURIComponent(profile.name || "")}&providerAccountId=${account.providerAccountId}`;
-          }
-          
-          
-          const linkedAccount = await prisma.account.findFirst({
-            where: {
-              userId: existingUser.id,
-              provider: 'google',
-              providerAccountId: account.providerAccountId
-            }
-          });
-        
-          return true; 
-        } catch (error) {
-          console.error('Error during signIn callback:', error);
-          return false; 
-        }
-      }
-      return true;
-    },
     async jwt({ token, user }: JWTCallbackParams) {
       if (user) {
         token.id = user.id;
