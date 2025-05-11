@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import SessionProviderWrapper from "./SessionProvider";
 
 export default function Providers({ children }: React.PropsWithChildren) {
   const [queryClient] = useState(() => new QueryClient({
@@ -15,8 +16,10 @@ export default function Providers({ children }: React.PropsWithChildren) {
   }));
 
   return (
+            <SessionProviderWrapper>
     <QueryClientProvider client={queryClient}>
       {children}
     </QueryClientProvider>
+    </SessionProviderWrapper>
   );
 }
