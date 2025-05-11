@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import * as React from "react";
@@ -6,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,7 +22,25 @@ import {
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import Link from "next/link";
+
+// Interface for API response
+interface ApiResponse {
+  message: string;
+  user: {
+    id: string;
+    username: string;
+    email: string;
+  };
+}
+
+// Interface for API error
+interface ApiError {
+  error?: string;
+  errors?: Array<{
+    path?: string;
+    message?: string;
+  }>;
+}
 
 // Signup form validation schema using zod
 const signupSchema = z.object({
@@ -36,9 +55,12 @@ const signupSchema = z.object({
 
 type SignupFormValues = z.infer<typeof signupSchema>;
 
+// API request data type (without confirmPassword)
+type SignupApiData = Omit<SignupFormValues, 'confirmPassword'>;
+
 export function SignUpForm() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -61,7 +83,7 @@ export function SignUpForm() {
       // Remove confirmPassword as it's not needed in the API call
       const { confirmPassword, ...apiData } = data;
       
-      const response = await axios.post("/api/users", apiData);
+      const response: AxiosResponse<ApiResponse> = await axios.post("/api/users", apiData as SignupApiData);
 
       // Show success message
       setSuccessMessage("Account created successfully! Redirecting to login...");
@@ -71,12 +93,14 @@ export function SignUpForm() {
         router.push("/login");
       }, 2000);
 
-    } catch (err: any) {
-      if (err.response?.data?.error) {
-        setError(err.response.data.error);
-      } else if (err.response?.data?.errors) {
+    } catch (err) {
+      const error = err as AxiosError<ApiError>;
+      
+      if (error.response?.data?.error) {
+        setError(error.response.data.error);
+      } else if (error.response?.data?.errors) {
         // Handle validation errors from the API
-        const errors = err.response.data.errors.map((e: any) => e.message || e.path).join(", ");
+        const errors = error.response.data.errors.map((e) => e.message || e.path).join(", ");
         setError(errors);
       } else {
         setError("An unexpected error occurred. Please try again.");

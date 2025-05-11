@@ -3,9 +3,6 @@ import { NextResponse, type NextRequest } from "next/server";
 export {default} from "next-auth/middleware"
 
 
-// TODO : make a 404 page and redirect the user if he is not admin but trynna access the admin routes
-
-
 export async function middleware(req:NextRequest) {
 
   try {
