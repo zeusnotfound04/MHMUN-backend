@@ -131,9 +131,6 @@ exports.Prisma.ParticipantScalarFieldEnum = {
   phone: 'phone',
   qrImageUrl: 'qrImageUrl',
   committee: 'committee',
-  experience: 'experience',
-  countryPreferences: 'countryPreferences',
-  delegationType: 'delegationType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

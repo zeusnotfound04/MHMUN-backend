@@ -13,9 +13,6 @@ interface ParticipantModel {
   qrImageUrl: string;
   formId: string;
   committee: string | null;
-  experience: string | null;
-  countryPreferences: string | null;
-  delegationType: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -27,9 +24,7 @@ const formSchema = z.object({
     email: z.string().email(),
     formId: z.string().min(1),
     phone: z.string(),
-    committee: z.string().optional(),
-    experience: z.string().optional(),
-    countryPreferences: z.string().optional(),
+    committee: z.string(),
     delegationType: z.string().optional(),
     profilePicture: z.string().optional()
 });

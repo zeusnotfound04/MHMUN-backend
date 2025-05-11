@@ -890,9 +890,6 @@ export namespace Prisma {
     phone: string | null
     qrImageUrl: string | null
     committee: string | null
-    experience: string | null
-    countryPreferences: string | null
-    delegationType: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -908,9 +905,6 @@ export namespace Prisma {
     phone: string | null
     qrImageUrl: string | null
     committee: string | null
-    experience: string | null
-    countryPreferences: string | null
-    delegationType: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -926,9 +920,6 @@ export namespace Prisma {
     phone: number
     qrImageUrl: number
     committee: number
-    experience: number
-    countryPreferences: number
-    delegationType: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -946,9 +937,6 @@ export namespace Prisma {
     phone?: true
     qrImageUrl?: true
     committee?: true
-    experience?: true
-    countryPreferences?: true
-    delegationType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -964,9 +952,6 @@ export namespace Prisma {
     phone?: true
     qrImageUrl?: true
     committee?: true
-    experience?: true
-    countryPreferences?: true
-    delegationType?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -982,9 +967,6 @@ export namespace Prisma {
     phone?: true
     qrImageUrl?: true
     committee?: true
-    experience?: true
-    countryPreferences?: true
-    delegationType?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1073,9 +1055,6 @@ export namespace Prisma {
     phone: string
     qrImageUrl: string
     committee: string | null
-    experience: string | null
-    countryPreferences: string | null
-    delegationType: string | null
     createdAt: Date
     updatedAt: Date
     _count: ParticipantCountAggregateOutputType | null
@@ -1108,9 +1087,6 @@ export namespace Prisma {
     phone?: boolean
     qrImageUrl?: boolean
     committee?: boolean
-    experience?: boolean
-    countryPreferences?: boolean
-    delegationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1126,9 +1102,6 @@ export namespace Prisma {
     phone?: boolean
     qrImageUrl?: boolean
     committee?: boolean
-    experience?: boolean
-    countryPreferences?: boolean
-    delegationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1144,9 +1117,6 @@ export namespace Prisma {
     phone?: boolean
     qrImageUrl?: boolean
     committee?: boolean
-    experience?: boolean
-    countryPreferences?: boolean
-    delegationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["participant"]>
@@ -1162,14 +1132,11 @@ export namespace Prisma {
     phone?: boolean
     qrImageUrl?: boolean
     committee?: boolean
-    experience?: boolean
-    countryPreferences?: boolean
-    delegationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profilePicture" | "class" | "school" | "email" | "formId" | "phone" | "qrImageUrl" | "committee" | "experience" | "countryPreferences" | "delegationType" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
+  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profilePicture" | "class" | "school" | "email" | "formId" | "phone" | "qrImageUrl" | "committee" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
 
   export type $ParticipantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Participant"
@@ -1185,9 +1152,6 @@ export namespace Prisma {
       phone: string
       qrImageUrl: string
       committee: string | null
-      experience: string | null
-      countryPreferences: string | null
-      delegationType: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["participant"]>
@@ -1623,9 +1587,6 @@ export namespace Prisma {
     readonly phone: FieldRef<"Participant", 'String'>
     readonly qrImageUrl: FieldRef<"Participant", 'String'>
     readonly committee: FieldRef<"Participant", 'String'>
-    readonly experience: FieldRef<"Participant", 'String'>
-    readonly countryPreferences: FieldRef<"Participant", 'String'>
-    readonly delegationType: FieldRef<"Participant", 'String'>
     readonly createdAt: FieldRef<"Participant", 'DateTime'>
     readonly updatedAt: FieldRef<"Participant", 'DateTime'>
   }
@@ -2019,9 +1980,6 @@ export namespace Prisma {
     phone: 'phone',
     qrImageUrl: 'qrImageUrl',
     committee: 'committee',
-    experience: 'experience',
-    countryPreferences: 'countryPreferences',
-    delegationType: 'delegationType',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2117,9 +2075,6 @@ export namespace Prisma {
     phone?: StringFilter<"Participant"> | string
     qrImageUrl?: StringFilter<"Participant"> | string
     committee?: StringNullableFilter<"Participant"> | string | null
-    experience?: StringNullableFilter<"Participant"> | string | null
-    countryPreferences?: StringNullableFilter<"Participant"> | string | null
-    delegationType?: StringNullableFilter<"Participant"> | string | null
     createdAt?: DateTimeFilter<"Participant"> | Date | string
     updatedAt?: DateTimeFilter<"Participant"> | Date | string
   }
@@ -2135,9 +2090,6 @@ export namespace Prisma {
     phone?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrderInput | SortOrder
-    experience?: SortOrderInput | SortOrder
-    countryPreferences?: SortOrderInput | SortOrder
-    delegationType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2156,9 +2108,6 @@ export namespace Prisma {
     phone?: StringFilter<"Participant"> | string
     qrImageUrl?: StringFilter<"Participant"> | string
     committee?: StringNullableFilter<"Participant"> | string | null
-    experience?: StringNullableFilter<"Participant"> | string | null
-    countryPreferences?: StringNullableFilter<"Participant"> | string | null
-    delegationType?: StringNullableFilter<"Participant"> | string | null
     createdAt?: DateTimeFilter<"Participant"> | Date | string
     updatedAt?: DateTimeFilter<"Participant"> | Date | string
   }, "id" | "id" | "formId">
@@ -2174,9 +2123,6 @@ export namespace Prisma {
     phone?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrderInput | SortOrder
-    experience?: SortOrderInput | SortOrder
-    countryPreferences?: SortOrderInput | SortOrder
-    delegationType?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ParticipantCountOrderByAggregateInput
@@ -2198,9 +2144,6 @@ export namespace Prisma {
     phone?: StringWithAggregatesFilter<"Participant"> | string
     qrImageUrl?: StringWithAggregatesFilter<"Participant"> | string
     committee?: StringNullableWithAggregatesFilter<"Participant"> | string | null
-    experience?: StringNullableWithAggregatesFilter<"Participant"> | string | null
-    countryPreferences?: StringNullableWithAggregatesFilter<"Participant"> | string | null
-    delegationType?: StringNullableWithAggregatesFilter<"Participant"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Participant"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Participant"> | Date | string
   }
@@ -2216,9 +2159,6 @@ export namespace Prisma {
     phone: string
     qrImageUrl: string
     committee?: string | null
-    experience?: string | null
-    countryPreferences?: string | null
-    delegationType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2234,9 +2174,6 @@ export namespace Prisma {
     phone: string
     qrImageUrl: string
     committee?: string | null
-    experience?: string | null
-    countryPreferences?: string | null
-    delegationType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2252,9 +2189,6 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
     committee?: NullableStringFieldUpdateOperationsInput | string | null
-    experience?: NullableStringFieldUpdateOperationsInput | string | null
-    countryPreferences?: NullableStringFieldUpdateOperationsInput | string | null
-    delegationType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2270,9 +2204,6 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
     committee?: NullableStringFieldUpdateOperationsInput | string | null
-    experience?: NullableStringFieldUpdateOperationsInput | string | null
-    countryPreferences?: NullableStringFieldUpdateOperationsInput | string | null
-    delegationType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2288,9 +2219,6 @@ export namespace Prisma {
     phone: string
     qrImageUrl: string
     committee?: string | null
-    experience?: string | null
-    countryPreferences?: string | null
-    delegationType?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2306,9 +2234,6 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
     committee?: NullableStringFieldUpdateOperationsInput | string | null
-    experience?: NullableStringFieldUpdateOperationsInput | string | null
-    countryPreferences?: NullableStringFieldUpdateOperationsInput | string | null
-    delegationType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2324,9 +2249,6 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
     committee?: NullableStringFieldUpdateOperationsInput | string | null
-    experience?: NullableStringFieldUpdateOperationsInput | string | null
-    countryPreferences?: NullableStringFieldUpdateOperationsInput | string | null
-    delegationType?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2388,9 +2310,6 @@ export namespace Prisma {
     phone?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrder
-    experience?: SortOrder
-    countryPreferences?: SortOrder
-    delegationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2406,9 +2325,6 @@ export namespace Prisma {
     phone?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrder
-    experience?: SortOrder
-    countryPreferences?: SortOrder
-    delegationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2424,9 +2340,6 @@ export namespace Prisma {
     phone?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrder
-    experience?: SortOrder
-    countryPreferences?: SortOrder
-    delegationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
