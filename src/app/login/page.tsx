@@ -1,9 +1,21 @@
 
 "use client";
 
+import { Suspense } from "react";
 import { LoginForm } from "@/components/LoginForm";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Globe } from "lucide-react";
+
+// Loading fallback component for the LoginForm
+function LoginFormSkeleton() {
+  return (
+    <div className="space-y-5">
+      <div className="h-10 bg-gray-800/50 rounded-md animate-pulse"></div>
+      <div className="h-10 bg-gray-800/50 rounded-md animate-pulse"></div>
+      <div className="h-10 bg-gray-800/50 rounded-md animate-pulse mt-6"></div>
+    </div>
+  );
+}
 
 export default function Login() {
   return (
@@ -43,7 +55,9 @@ export default function Login() {
                 Enter your email and password to continue
               </p>
             </div>
-            <LoginForm />
+            <Suspense fallback={<LoginFormSkeleton />}>
+              <LoginForm />
+            </Suspense>
           </div>
         </div>
       </div>
