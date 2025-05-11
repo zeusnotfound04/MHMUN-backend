@@ -3,7 +3,6 @@
 
 import { LoginForm } from "@/components/LoginForm";
 import { SparklesCore } from "@/components/ui/sparkles";
-import Image from "next/image";
 import { Globe } from "lucide-react";
 
 export default function Login() {

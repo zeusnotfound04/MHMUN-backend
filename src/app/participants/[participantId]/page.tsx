@@ -1,7 +1,7 @@
 "use client";
 
 import { SparklesCore } from "@/components/ui/sparkles";
-import { Globe, User, MapPin, Mail, FileText, Phone, Building, Flag, UserCircle, Calendar } from "lucide-react";
+import { Globe, User,  Mail, Phone, Building, Flag, UserCircle, Calendar } from "lucide-react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useParticipant } from "@/lib/participants";
