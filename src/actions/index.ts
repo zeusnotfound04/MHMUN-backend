@@ -6,6 +6,16 @@ import { UTApi } from 'uploadthing/server';
 import s3Client from "@/lib/awsS3"; 
 import path from 'path';
 import fs from 'fs';
+import { prisma } from '@/lib/prisma';
+
+
+interface User {
+  username: string;
+  email: string;
+  password: string;
+  Role?:  "ADMIN" | "USER";
+}
+
 
 try {
   const poppinsPath = path.resolve('./fonts/Poppins-Bold.ttf');
@@ -111,3 +121,52 @@ export async function generateQRCodeWithFormId(formId: string, participantId: st
   
     return `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_S3_REGION}.amazonaws.com/images/${folder}/${timestampedFilename}`;
   };
+
+
+export async function createUserWithAccount({  username, email, password , Role = "ADMIN" }: User) {
+  try {
+    // Check if user with this email already exists
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (existingUser) {
+      throw new Error("User with this email already exists");
+    }
+
+    // Create the new user
+    const user = await prisma.user.create({
+      data: {
+        username,
+        email,
+        password, 
+        role: Role, 
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.error("Error creating user:", error);
+    throw error;
+  }
+}
+
+/**
+ * Gets a user by email
+ * @param email User's email address
+ * @returns The user object if found, or null
+ */
+export async function getUserbyEmail(email: User['email']) {
+  try {
+    return await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+  } catch (error) {
+    console.error("Error getting user by email:", error);
+    throw error;
+  }
+}
