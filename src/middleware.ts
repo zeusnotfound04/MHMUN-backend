@@ -15,7 +15,9 @@ export async function middleware(req:NextRequest) {
 
 
     if (registerRouteRegex.test(req.nextUrl.pathname)) {
-      return NextResponse.redirect(new URL("/", req.url));
+       if (!token || token.role!== "ADMIN") {
+        return NextResponse.redirect( new URL("/" , req.url))
+      }
     }
 
 
@@ -26,7 +28,9 @@ export async function middleware(req:NextRequest) {
     }
 
     if (participantDetailRouteRegex.test(req.nextUrl.pathname)) {
-      return NextResponse.next();
+       if (!token || token.role!== "ADMIN") {
+        return NextResponse.redirect( new URL("/" , req.url))
+      }
     }
 
     return NextResponse.next();
