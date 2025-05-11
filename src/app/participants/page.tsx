@@ -4,6 +4,7 @@ import { useState } from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Globe, Search, User } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useParticipants } from "@/lib/participants";
 
@@ -19,14 +20,14 @@ const committees = [
 
 export default function ParticipantsList() {
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   // Using TanStack Query to fetch participants with automatic caching
   const { data: participants = [], isLoading, error: fetchError } = useParticipants();
   const error = fetchError ? 'Could not load participants. Please try again later.' : null;
 
   // Filter participants based on search query
-  const filteredParticipants = participants.filter(participant => 
-    participant.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+  const filteredParticipants = participants.filter(participant =>
+    participant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     participant.school.toLowerCase().includes(searchQuery.toLowerCase()) ||
     (participant.committee && participant.committee.toLowerCase().includes(searchQuery.toLowerCase()))
   );
@@ -46,18 +47,18 @@ export default function ParticipantsList() {
           particleColor="#FFFFFF"
           speed={0.3}
         />
-        
+
         {/* Gradient overlays for visual interest */}
         <div className="absolute inset-x-20 top-1/4 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm opacity-30"></div>
         <div className="absolute inset-x-20 top-1/4 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4 opacity-30"></div>
         <div className="absolute inset-x-60 bottom-1/4 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[3px] w-1/3 blur-sm opacity-30"></div>
         <div className="absolute inset-x-60 bottom-1/4 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/3 opacity-30"></div>
-        
+
         {/* Additional decorative elements */}
         <div className="absolute top-10 left-20 w-20 h-20 rounded-full bg-purple-500/5 animate-pulse" style={{ animationDuration: '10s' }}></div>
         <div className="absolute bottom-40 right-40 w-24 h-24 rounded-full bg-blue-500/5 animate-pulse" style={{ animationDuration: '12s' }}></div>
         <div className="absolute bottom-1/3 left-1/3 w-32 h-32 rounded-full bg-indigo-500/5 animate-pulse" style={{ animationDuration: '18s' }}></div>
-        
+
         {/* Star-like dots */}
         <div className="absolute h-1 w-1 rounded-full bg-white top-[10%] left-[15%] opacity-70"></div>
         <div className="absolute h-2 w-2 rounded-full bg-blue-300 top-[20%] left-[35%] opacity-50"></div>
@@ -65,7 +66,7 @@ export default function ParticipantsList() {
         <div className="absolute h-2 w-2 rounded-full bg-indigo-300 top-[45%] left-[75%] opacity-50"></div>
         <div className="absolute h-1 w-1 rounded-full bg-white top-[65%] left-[22%] opacity-70"></div>
         <div className="absolute h-2 w-2 rounded-full bg-purple-300 top-[70%] left-[88%] opacity-50"></div>
-        
+
         {/* Floating globe icons */}
         <div className="absolute bottom-[20%] right-[20%] opacity-30 animate-spin-slow">
           <Globe className="w-12 h-12 text-blue-400" />
@@ -133,26 +134,35 @@ export default function ParticipantsList() {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <Link href={`/participants/${participant.id}`} className="block">
-                    <div className="p-6 rounded-xl backdrop-blur-sm bg-black/30 border border-indigo-500/20 hover:bg-indigo-900/20 transition-colors h-full">
-                      <div className="flex items-center mb-4">
-                        <div className="w-10 h-10 rounded-full bg-indigo-600/20 flex items-center justify-center mr-3">
-                          <User className="w-5 h-5 text-indigo-400" />
+                    <div className="p-6 rounded-xl backdrop-blur-sm bg-black/30 border border-indigo-500/20 hover:bg-indigo-900/20 transition-colors h-full">                      <div className="flex items-center mb-4">
+                        <div className="w-10 h-10 rounded-full overflow-hidden bg-indigo-600/20 flex items-center justify-center mr-3">
+                          {participant.profilePicture ? (
+                            <Image 
+                              src={participant.profilePicture} 
+                              alt={participant.name}
+                              width={40}
+                              height={40}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <User className="w-5 h-5 text-indigo-400" />
+                          )}
                         </div>
                         <div>
                           <h3 className="text-white font-medium">{participant.name}</h3>
                           <p className="text-sm text-gray-400">{participant.school}</p>
                         </div>
                       </div>
-                      
+
                       {participant.committee && (
                         <div className="mt-2">
                           <span className="inline-block px-3 py-1 rounded-full text-xs bg-indigo-900/40 text-indigo-300 border border-indigo-500/30">
-                             {committees.find(c => c.value === participant.committee)?.label || participant.committee}
+                            {committees.find(c => c.value === participant.committee)?.label || participant.committee}
                           </span>
                         </div>
                       )}
-                      
-                     
+
+
 
                     </div>
                   </Link>
