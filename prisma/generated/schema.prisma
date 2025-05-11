@@ -24,6 +24,7 @@ model User {
   id        String    @id @default(uuid())
   password  String
   username  String    @unique
+  email     String    @unique
   role      Role      @default(USER)
   createdAt DateTime  @default(now())
   sessions  Session[]
