@@ -8,10 +8,11 @@ import { useRouter } from "next/navigation";
 
 export default function Page() {
   const router = useRouter();
-  const { data } = useSession();
+  const { data: session, status } = useSession();
   
-  if (data?.user?.role === "ADMIN") {
+  if (session?.user?.role === "ADMIN") {
     router.push("/login");
+    return null;
   }
   return (
     <div className="relative min-h-screen overflow-hidden bg-black bg-[radial-gradient(ellipse_at_top,rgba(16,18,66,0.4),transparent_50%)]">
