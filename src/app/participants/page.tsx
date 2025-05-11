@@ -7,6 +7,16 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useParticipants } from "@/lib/participants";
 
+const committees = [
+  { value: "unsc", label: "UN Security Council" },
+  { value: "unga", label: "UN General Assembly" },
+  { value: "unhrc", label: "UN Human Rights Council" },
+  { value: "who", label: "World Health Organization" },
+  { value: "ipc", label: "International Press Corps" },
+  { value: "disec", label: "Disarmament and International Security" },
+];
+
+
 export default function ParticipantsList() {
   const [searchQuery, setSearchQuery] = useState("");
   
@@ -20,6 +30,7 @@ export default function ParticipantsList() {
     participant.school.toLowerCase().includes(searchQuery.toLowerCase()) ||
     (participant.committee && participant.committee.toLowerCase().includes(searchQuery.toLowerCase()))
   );
+
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black bg-[radial-gradient(ellipse_at_top,rgba(16,18,66,0.4),transparent_50%)]">
