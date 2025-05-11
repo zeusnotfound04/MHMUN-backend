@@ -6,10 +6,10 @@ import { toast } from "sonner"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
-import { Globe, Check, User,  Mail, FileText, Phone, Building, Flag, UserCircle } from "lucide-react"
+import { Globe, Check, User, Mail, FileText, Phone, Building, Flag, UserCircle, Upload, Image as ImageIcon } from "lucide-react"
 import { DeterministicBubbles } from "@/components/ui/deterministic-background"
 import axios from "axios"
 import { Button } from "@/components/ui/button"
@@ -45,7 +45,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-// Enhanced schema with committee preferences and delegation info
+// Enhanced schema with committee preferences, delegation info, and profile picture
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
   school: z.string().min(1, "School name is required"),
@@ -55,7 +55,8 @@ const formSchema = z.object({
   committee: z.string().min(1, "Please select a committee"),
   experience: z.string().optional(),
   countryPreferences: z.string().optional(),
-  delegationType: z.string().min(1, "Please select a delegation type")
+  delegationType: z.string().min(1, "Please select a delegation type"),
+  profilePicture: z.string().optional()
 });
 
 const committees = [
@@ -80,7 +81,10 @@ export default function RegistrationForm() {
   const [currentInfo, setCurrentInfo] = useState({ title: "", content: "" });
   const [isVisible, setIsVisible] = useState(false);
   const [backgroundPattern, setBackgroundPattern] = useState(1);
-
+  const [profileImage, setProfileImage] = useState<File | null>(null);
+  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
   // Control visibility for scroll animations
@@ -106,9 +110,51 @@ export default function RegistrationForm() {
       committee: "",
       experience: "",
       countryPreferences: "",
-      delegationType: "individual"
+      delegationType: "individual",
+      profilePicture: ""
     }
   })
+
+  // Handle profile image upload
+  const handleProfileImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Show preview of the image
+    const reader = new FileReader();
+    reader.onload = () => {
+      setProfileImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+    
+    setProfileImage(file);
+  };
+
+  // Handle profile image upload to S3
+  const uploadProfileImage = async () => {
+    if (!profileImage) return "";
+    
+    try {
+      setUploadingImage(true);
+      const formData = new FormData();
+      formData.append("files", profileImage);
+      
+      const response = await axios.post('/api/pfpUpload', formData);
+      
+      if (response.data.success && response.data.fileUrls.length > 0) {
+        return response.data.fileUrls[0];
+      } else {
+        toast.error("Failed to upload profile picture");
+        return "";
+      }
+    } catch (error) {
+      console.error("Error uploading profile image:", error);
+      toast.error("Failed to upload profile picture");
+      return "";
+    } finally {
+      setUploadingImage(false);
+    }
+  };
 
   const showCommitteeInfo = (committee: string) => {
     const info = {
@@ -141,11 +187,17 @@ export default function RegistrationForm() {
     setCurrentInfo(info[committee as keyof typeof info]);
     setShowInfoDialog(true);
   }
-
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     try {
-      console.log(values);
+      // Upload profile picture if one was selected
+      let profilePictureUrl = "";
+      if (profileImage) {
+        profilePictureUrl = await uploadProfileImage();
+        values.profilePicture = profilePictureUrl;
+      }
+      
+      console.log("Submitting form with data:", values);
       const response = await axios.post('/api/participants', values);
       
       // Show success message
@@ -768,6 +820,70 @@ export default function RegistrationForm() {
                             Mention any previous MUN conferences you've attended
                           </FormDescription>
                           <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </motion.div>
+
+                  <motion.div variants={itemVariants}>
+                    <FormField
+                      control={form.control}
+                      name="profilePicture"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2 font-medium">
+                            <ImageIcon className="w-4 h-4" /> Profile Picture
+                          </FormLabel>
+                          <div className="space-y-4">
+                            {profileImagePreview && (
+                              <div className="flex justify-center">
+                                <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-indigo-500/50">
+                                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                                  <img 
+                                    src={profileImagePreview} 
+                                    alt="Profile preview" 
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                              </div>
+                            )}
+                            
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={handleProfileImageChange}
+                              ref={fileInputRef}
+                              className="hidden"
+                              id="profile-upload"
+                            />
+                            
+                            <FormControl>
+                              <motion.div 
+                                whileHover={{ scale: 1.01 }}
+                                whileTap={{ scale: 0.99 }}
+                                className="flex flex-col items-center"
+                              >
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  onClick={() => fileInputRef.current?.click()}
+                                  className="w-full bg-slate-50 dark:bg-slate-900 border-dashed border-2 border-indigo-500/30 hover:border-indigo-500/60 text-indigo-400 hover:text-indigo-300 flex items-center justify-center py-6"
+                                >
+                                  <Upload className="w-5 h-5 mr-2" />
+                                  {profileImagePreview ? 'Change Photo' : 'Upload Photo'}
+                                </Button>
+                              </motion.div>
+                            </FormControl>
+                            
+                            <FormDescription>
+                              Upload a profile picture (max 2MB, JPG or PNG)
+                            </FormDescription>
+                            <FormMessage />
+                          </div>
+                          <input
+                            type="hidden"
+                            {...field}
+                          />
                         </FormItem>
                       )}
                     />

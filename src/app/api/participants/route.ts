@@ -29,7 +29,8 @@ const formSchema = z.object({
     committee: z.string().optional(),
     experience: z.string().optional(),
     countryPreferences: z.string().optional(),
-    delegationType: z.string().optional()
+    delegationType: z.string().optional(),
+    profilePicture: z.string().optional()
 });
 
 type ParticipantFormData = z.infer<typeof formSchema>;
@@ -127,9 +128,7 @@ export async function POST(request: Request) {
         },
         { status: 400 }
       );
-    }
-
-    const { 
+    }    const { 
       name, 
       email, 
       phone, 
@@ -138,7 +137,8 @@ export async function POST(request: Request) {
       committee, 
       experience, 
       countryPreferences, 
-      delegationType 
+      delegationType,
+      profilePicture
     }: ParticipantFormData = validation.data;
     
     console.log("Form data:", validation.data);
@@ -159,7 +159,8 @@ export async function POST(request: Request) {
         committee,
         experience,
         countryPreferences,
-        delegationType
+        delegationType,
+        profilePicture
       },
     });
 

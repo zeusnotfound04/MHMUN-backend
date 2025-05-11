@@ -6,30 +6,28 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "../prisma/generated"
+  output   = "../prisma/generated"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
-
-
 model Participant {
-  id                 String   @unique @id
+  id                 String   @id @unique
   name               String
-  profilePicture    String?
+  profilePicture     String?
   school             String
-  email              String   
+  email              String
   formId             String   @unique
   phone              String
-  qrImageUrl         String  
-  committee          String?  
+  qrImageUrl         String
+  committee          String?
   experience         String?
   countryPreferences String?
-  delegationType    String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  delegationType     String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 }
