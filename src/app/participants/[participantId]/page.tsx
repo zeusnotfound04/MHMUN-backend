@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useParticipant } from "@/lib/participants";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ParticipantDetails() {
   const params = useParams();
@@ -222,7 +223,7 @@ export default function ParticipantDetails() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="mt-4 md:mt-6 flex justify-center"
           >
-            <a 
+            <Link
               href="/participants"
               className="px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg backdrop-blur-sm bg-black/30 border border-indigo-500/20 text-indigo-300 hover:bg-indigo-900/30 transition-colors"
             >
