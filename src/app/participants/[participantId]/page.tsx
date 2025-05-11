@@ -162,6 +162,18 @@ export default function ParticipantDetails() {
                           </div>
                         </div>
                       )}
+
+          {participant.class && (
+                        <div className="flex items-start space-x-3">
+                          <div className="rounded-full bg-indigo-600/20 p-2 mt-1 flex-shrink-0">
+                            <User className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-gray-400 text-xs md:text-sm">Class</p>
+                            <p className="text-white text-base md:text-lg truncate">Class {participant.class}</p>
+                          </div>
+                        </div>
+                      )}
                       
                      
 
