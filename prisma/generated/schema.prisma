@@ -19,6 +19,7 @@ model Participant {
   id                 String   @id @unique
   name               String
   profilePicture     String?
+  class              String
   school             String
   email              String
   formId             String   @unique

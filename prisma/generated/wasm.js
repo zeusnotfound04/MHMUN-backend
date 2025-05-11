@@ -124,6 +124,7 @@ exports.Prisma.ParticipantScalarFieldEnum = {
   id: 'id',
   name: 'name',
   profilePicture: 'profilePicture',
+  class: 'class',
   school: 'school',
   email: 'email',
   formId: 'formId',

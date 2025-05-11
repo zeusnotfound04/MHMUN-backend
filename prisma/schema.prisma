@@ -28,9 +28,9 @@ model Participant {
   phone              String
   qrImageUrl         String  
   committee          String?  
-  experience         String?
-  countryPreferences String?
-  delegationType    String?
+  // experience         String?
+  // countryPreferences String?
+  // delegationType    String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }

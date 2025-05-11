@@ -45,17 +45,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-// Enhanced schema with committee preferences, delegation info, and profile picture
+// Enhanced schema with committee preferences, delegation info, profile picture, and class
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
   school: z.string().min(1, "School name is required"),
+  class: z.string().min(1, "Class is required"),
   email: z.string().email("Please enter a valid email address"),
   formId: z.string().min(1, "Form ID is required"),
   phone: z.string().min(10, "Please enter a valid phone number").max(15),
   committee: z.string().min(1, "Please select a committee"),
-  experience: z.string().optional(),
-  countryPreferences: z.string().optional(),
-  delegationType: z.string().min(1, "Please select a delegation type"),
   profilePicture: z.string().optional()
 });
 
@@ -68,10 +66,15 @@ const committees = [
   { value: "disec", label: "Disarmament and International Security" },
 ];
 
-const delegationTypes = [
-  { value: "individual", label: "Individual Delegate" },
-  { value: "double", label: "Double Delegation" },
-  { value: "school", label: "School Delegation" },
+
+const classOptions = [
+  { value: "6", label: "Class 6" },
+  { value: "7", label: "Class 7" },
+  { value: "8", label: "Class 8" },
+  { value: "9", label: "Class 9" },
+  { value: "10", label: "Class 10" },
+  { value: "11", label: "Class 11" },
+  { value: "12", label: "Class 12" },
 ];
 
 export default function RegistrationForm() {
@@ -98,19 +101,16 @@ export default function RegistrationForm() {
     
     return () => clearInterval(intervalId);
   }, []);
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       school: "",
+      class: "",
       email: "",
       formId: "",
       phone: "",
       committee: "",
-      experience: "",
-      countryPreferences: "",
-      delegationType: "individual",
       profilePicture: ""
     }
   })
@@ -534,8 +534,7 @@ export default function RegistrationForm() {
                       )}
                     />
                   </motion.div>
-                  
-                  <motion.div variants={itemVariants}>
+                    <motion.div variants={itemVariants}>
                     <FormField
                       control={form.control}
                       name="school"
@@ -558,6 +557,43 @@ export default function RegistrationForm() {
                           </FormControl>
                           <FormDescription>
                             Your school or institution you are representing
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </motion.div>
+                  
+                  <motion.div variants={itemVariants}>
+                    <FormField
+                      control={form.control}
+                      name="class"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2 font-medium">
+                            <FileText className="w-4 h-4" /> Class
+                          </FormLabel>
+                          <FormControl>
+                            <motion.div
+                              whileHover={{ scale: 1.01 }}
+                              whileTap={{ scale: 0.99 }}
+                            >
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <SelectTrigger className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 focus:ring-blue-500 transition-all">
+                                  <SelectValue placeholder="Select your class" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {classOptions.map((classOption) => (
+                                    <SelectItem key={classOption.value} value={classOption.value}>
+                                      {classOption.label}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </motion.div>
+                          </FormControl>
+                          <FormDescription>
+                            Your current class or grade
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
@@ -728,103 +764,8 @@ export default function RegistrationForm() {
                     />
                   </motion.div>
 
-                  <motion.div variants={itemVariants}>
-                    <FormField
-                      control={form.control}
-                      name="delegationType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center gap-2 font-medium">
-                            <UserCircle className="w-4 h-4" /> Delegation Type
-                          </FormLabel>
-                          <FormControl>
-                            <motion.div
-                              whileHover={{ scale: 1.01 }}
-                              whileTap={{ scale: 0.99 }}
-                            >
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <SelectTrigger className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 focus:ring-blue-500 transition-all">
-                                  <SelectValue placeholder="Select a delegation type" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {delegationTypes.map((type) => (
-                                    <SelectItem key={type.value} value={type.value}>
-                                      {type.label}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                            </motion.div>
-                          </FormControl>
-                          <FormDescription>
-                            Specify your delegation type
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </motion.div>
 
-                  <motion.div variants={itemVariants}>
-                    <FormField
-                      control={form.control}
-                      name="countryPreferences"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center gap-2 font-medium">
-                            <Globe className="w-4 h-4" /> Country Preferences
-                          </FormLabel>
-                          <FormControl>
-                            <motion.div
-                              whileHover={{ scale: 1.01 }}
-                              whileTap={{ scale: 0.99 }}
-                            >
-                              <Input 
-                                placeholder="List your top 3 country preferences (comma separated)"
-                                className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 focus:ring-blue-500 transition-all"
-                                {...field} 
-                              />
-                            </motion.div>
-                          </FormControl>
-                          <FormDescription>
-                            List your preferred countries to represent (e.g. USA, France, Japan)
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </motion.div>
-
-                  <motion.div variants={itemVariants}>
-                    <FormField
-                      control={form.control}
-                      name="experience"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center gap-2 font-medium">
-                            <FileText className="w-4 h-4" /> MUN Experience
-                          </FormLabel>
-                          <FormControl>
-                            <motion.div
-                              whileHover={{ scale: 1.01 }}
-                              whileTap={{ scale: 0.99 }}
-                            >
-                              <Input 
-                                placeholder="Briefly describe your MUN experience"
-                                className="transition-all focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
-                                {...field} 
-                              />
-                            </motion.div>
-                          </FormControl>
-                          <FormDescription>
-                            Mention any previous MUN conferences you've attended
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </motion.div>
-
+              
                   {/* Profile Picture Upload Field */}
                   <motion.div variants={itemVariants}>
                     <FormField

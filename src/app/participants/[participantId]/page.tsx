@@ -163,17 +163,7 @@ export default function ParticipantDetails() {
                         </div>
                       )}
                       
-                      {participant.delegationType && (
-                        <div className="flex items-start space-x-3">
-                          <div className="rounded-full bg-indigo-600/20 p-2 mt-1 flex-shrink-0">
-                            <User className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
-                          </div>
-                          <div className="min-w-0">
-                            <p className="text-gray-400 text-xs md:text-sm">Delegation Type</p>
-                            <p className="text-white text-base md:text-lg truncate">{participant.delegationType}</p>
-                          </div>
-                        </div>
-                      )}
+                     
 
                       <div className="flex items-start space-x-3">
                         <div className="rounded-full bg-indigo-600/20 p-2 mt-1 flex-shrink-0">
@@ -187,28 +177,9 @@ export default function ParticipantDetails() {
                     </div>
                   </div>
 
-                  {/* Second section - Additional Info */}
-                  {participant.countryPreferences && (
-                    <div className="p-3 md:p-4 rounded-xl bg-indigo-900/20 border border-indigo-500/20">
-                      <div className="flex items-center space-x-2 mb-2 md:mb-3">
-                        <MapPin className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
-                        <h3 className="text-base md:text-lg font-medium text-white">Country Preferences</h3>
-                      </div>
-                      <p className="text-gray-300 text-sm md:text-base">{participant.countryPreferences}</p>
-                    </div>
-                  )}
-
-                  {participant.experience && (
-                    <div className="p-3 md:p-4 rounded-xl bg-indigo-900/20 border border-indigo-500/20">
-                      <div className="flex items-center space-x-2 mb-2 md:mb-3">
-                        <FileText className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
-                        <h3 className="text-base md:text-lg font-medium text-white">Experience</h3>
-                      </div>
-                      <p className="text-gray-300 text-sm md:text-base">{participant.experience}</p>
-                    </div>
-                  )}
-
-                  {/* QR Code - Responsive sizing */}                  {participant.qrImageUrl && (
+              
+                  {/* QR Code - Responsive sizing */}                  
+                  {participant.qrImageUrl && (
                     <div className="mt-4 md:mt-6 flex flex-col items-center">
                       <h3 className="text-base md:text-lg font-medium text-white mb-3 md:mb-4">Registration QR Code</h3>
                       <div className="rounded-lg border-2 border-indigo-500/30 overflow-hidden">

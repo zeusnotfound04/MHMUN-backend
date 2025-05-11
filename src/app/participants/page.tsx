@@ -141,13 +141,7 @@ export default function ParticipantsList() {
                         </div>
                       )}
                       
-                      {participant.delegationType && (
-                        <div className="mt-2">
-                          <span className="inline-block px-3 py-1 rounded-full text-xs bg-purple-900/40 text-purple-300 border border-purple-500/30">
-                            {participant.delegationType}
-                          </span>
-                        </div>
-                      )}
+                     
                     </div>
                   </Link>
                 </motion.div>

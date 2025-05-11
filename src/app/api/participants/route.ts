@@ -23,6 +23,7 @@ interface ParticipantModel {
 const formSchema = z.object({
     name: z.string().min(1),
     school: z.string().min(1),
+    class: z.string().min(1),
     email: z.string().email(),
     formId: z.string().min(1),
     phone: z.string(),
@@ -132,12 +133,10 @@ export async function POST(request: Request) {
       name, 
       email, 
       phone, 
-      school, 
+      school,
+      class: studentClass,
       formId, 
       committee, 
-      experience, 
-      countryPreferences, 
-      delegationType,
       profilePicture
     }: ParticipantFormData = validation.data;
     
@@ -145,21 +144,17 @@ export async function POST(request: Request) {
 
     const participantId =  uuidv4();
     const qrImageUrl = await generateQRCodeWithFormId(formId , participantId); ;
-    console.log("QR Code image URL:", qrImageUrl);
-
-    const participant = await prisma.participant.create({
+    console.log("QR Code image URL:", qrImageUrl);    const participant = await prisma.participant.create({
       data: {
         id: participantId,
         name,
         email,
         phone,
         school,
+        class: studentClass,
         formId,
         qrImageUrl,
         committee,
-        experience,
-        countryPreferences,
-        delegationType,
         profilePicture
       },
     });

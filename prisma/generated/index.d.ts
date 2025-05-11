@@ -883,6 +883,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     profilePicture: string | null
+    class: string | null
     school: string | null
     email: string | null
     formId: string | null
@@ -900,6 +901,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     profilePicture: string | null
+    class: string | null
     school: string | null
     email: string | null
     formId: string | null
@@ -917,6 +919,7 @@ export namespace Prisma {
     id: number
     name: number
     profilePicture: number
+    class: number
     school: number
     email: number
     formId: number
@@ -936,6 +939,7 @@ export namespace Prisma {
     id?: true
     name?: true
     profilePicture?: true
+    class?: true
     school?: true
     email?: true
     formId?: true
@@ -953,6 +957,7 @@ export namespace Prisma {
     id?: true
     name?: true
     profilePicture?: true
+    class?: true
     school?: true
     email?: true
     formId?: true
@@ -970,6 +975,7 @@ export namespace Prisma {
     id?: true
     name?: true
     profilePicture?: true
+    class?: true
     school?: true
     email?: true
     formId?: true
@@ -1060,6 +1066,7 @@ export namespace Prisma {
     id: string
     name: string
     profilePicture: string | null
+    class: string
     school: string
     email: string
     formId: string
@@ -1094,6 +1101,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     profilePicture?: boolean
+    class?: boolean
     school?: boolean
     email?: boolean
     formId?: boolean
@@ -1111,6 +1119,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     profilePicture?: boolean
+    class?: boolean
     school?: boolean
     email?: boolean
     formId?: boolean
@@ -1128,6 +1137,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     profilePicture?: boolean
+    class?: boolean
     school?: boolean
     email?: boolean
     formId?: boolean
@@ -1145,6 +1155,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     profilePicture?: boolean
+    class?: boolean
     school?: boolean
     email?: boolean
     formId?: boolean
@@ -1158,7 +1169,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profilePicture" | "school" | "email" | "formId" | "phone" | "qrImageUrl" | "committee" | "experience" | "countryPreferences" | "delegationType" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
+  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profilePicture" | "class" | "school" | "email" | "formId" | "phone" | "qrImageUrl" | "committee" | "experience" | "countryPreferences" | "delegationType" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
 
   export type $ParticipantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Participant"
@@ -1167,6 +1178,7 @@ export namespace Prisma {
       id: string
       name: string
       profilePicture: string | null
+      class: string
       school: string
       email: string
       formId: string
@@ -1604,6 +1616,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Participant", 'String'>
     readonly name: FieldRef<"Participant", 'String'>
     readonly profilePicture: FieldRef<"Participant", 'String'>
+    readonly class: FieldRef<"Participant", 'String'>
     readonly school: FieldRef<"Participant", 'String'>
     readonly email: FieldRef<"Participant", 'String'>
     readonly formId: FieldRef<"Participant", 'String'>
@@ -1999,6 +2012,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     profilePicture: 'profilePicture',
+    class: 'class',
     school: 'school',
     email: 'email',
     formId: 'formId',
@@ -2096,6 +2110,7 @@ export namespace Prisma {
     id?: StringFilter<"Participant"> | string
     name?: StringFilter<"Participant"> | string
     profilePicture?: StringNullableFilter<"Participant"> | string | null
+    class?: StringFilter<"Participant"> | string
     school?: StringFilter<"Participant"> | string
     email?: StringFilter<"Participant"> | string
     formId?: StringFilter<"Participant"> | string
@@ -2113,6 +2128,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profilePicture?: SortOrderInput | SortOrder
+    class?: SortOrder
     school?: SortOrder
     email?: SortOrder
     formId?: SortOrder
@@ -2134,6 +2150,7 @@ export namespace Prisma {
     NOT?: ParticipantWhereInput | ParticipantWhereInput[]
     name?: StringFilter<"Participant"> | string
     profilePicture?: StringNullableFilter<"Participant"> | string | null
+    class?: StringFilter<"Participant"> | string
     school?: StringFilter<"Participant"> | string
     email?: StringFilter<"Participant"> | string
     phone?: StringFilter<"Participant"> | string
@@ -2150,6 +2167,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profilePicture?: SortOrderInput | SortOrder
+    class?: SortOrder
     school?: SortOrder
     email?: SortOrder
     formId?: SortOrder
@@ -2173,6 +2191,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Participant"> | string
     name?: StringWithAggregatesFilter<"Participant"> | string
     profilePicture?: StringNullableWithAggregatesFilter<"Participant"> | string | null
+    class?: StringWithAggregatesFilter<"Participant"> | string
     school?: StringWithAggregatesFilter<"Participant"> | string
     email?: StringWithAggregatesFilter<"Participant"> | string
     formId?: StringWithAggregatesFilter<"Participant"> | string
@@ -2190,6 +2209,7 @@ export namespace Prisma {
     id: string
     name: string
     profilePicture?: string | null
+    class: string
     school: string
     email: string
     formId: string
@@ -2207,6 +2227,7 @@ export namespace Prisma {
     id: string
     name: string
     profilePicture?: string | null
+    class: string
     school: string
     email: string
     formId: string
@@ -2224,6 +2245,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     profilePicture?: NullableStringFieldUpdateOperationsInput | string | null
+    class?: StringFieldUpdateOperationsInput | string
     school?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
@@ -2241,6 +2263,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     profilePicture?: NullableStringFieldUpdateOperationsInput | string | null
+    class?: StringFieldUpdateOperationsInput | string
     school?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
@@ -2258,6 +2281,7 @@ export namespace Prisma {
     id: string
     name: string
     profilePicture?: string | null
+    class: string
     school: string
     email: string
     formId: string
@@ -2275,6 +2299,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     profilePicture?: NullableStringFieldUpdateOperationsInput | string | null
+    class?: StringFieldUpdateOperationsInput | string
     school?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
@@ -2292,6 +2317,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     profilePicture?: NullableStringFieldUpdateOperationsInput | string | null
+    class?: StringFieldUpdateOperationsInput | string
     school?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
@@ -2355,6 +2381,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profilePicture?: SortOrder
+    class?: SortOrder
     school?: SortOrder
     email?: SortOrder
     formId?: SortOrder
@@ -2372,6 +2399,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profilePicture?: SortOrder
+    class?: SortOrder
     school?: SortOrder
     email?: SortOrder
     formId?: SortOrder
@@ -2389,6 +2417,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     profilePicture?: SortOrder
+    class?: SortOrder
     school?: SortOrder
     email?: SortOrder
     formId?: SortOrder

@@ -6,14 +6,12 @@ export interface Participant {
   id: string;
   name: string;
   school: string;
+  class: string;
   email: string;
   phone: string;
   qrImageUrl?: string | null;
   profilePicture?: string | null;
-  committee?: string | null;
-  experience?: string | null;
-  countryPreferences?: string | null;
-  delegationType?: string | null;
+  committee: string ;
   formId: string;
   createdAt: string;
   updatedAt: string;
