@@ -1,8 +1,18 @@
+"use client";
 import RegistrationForm from "@/components/RegisterForm";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Globe } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 
 export default function Page() {
+  const router = useRouter();
+  const { data } = useSession();
+  
+  if (data?.user?.role === "ADMIN") {
+    router.push("/login");
+  }
   return (
     <div className="relative min-h-screen overflow-hidden bg-black bg-[radial-gradient(ellipse_at_top,rgba(16,18,66,0.4),transparent_50%)]">
       {/* Background Elements with Sparkles */}

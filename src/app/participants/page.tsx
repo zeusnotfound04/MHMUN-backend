@@ -7,6 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useParticipants } from "@/lib/participants";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const committees = [
   { value: "unsc", label: "UN Security Council" },
@@ -25,6 +27,12 @@ export default function ParticipantsList() {
   const { data: participants = [], isLoading, error: fetchError } = useParticipants();
   const error = fetchError ? 'Could not load participants. Please try again later.' : null;
 
+   const router = useRouter();
+  const { data } = useSession();
+  
+  if (data?.user?.role === "ADMIN") {
+    router.push("/login");
+  }
   // Filter participants based on search query
   const filteredParticipants = participants.filter(participant =>
     participant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
