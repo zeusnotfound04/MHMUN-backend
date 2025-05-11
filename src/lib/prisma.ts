@@ -3,7 +3,7 @@ import { PrismaClient } from "../../prisma/generated";
 
 // Prevent multiple instances of Prisma Client in development
 declare global {
-  var prisma: PrismaClient | undefined;
+  const prisma: PrismaClient | undefined;
 }
 
 export const prisma = global.prisma || new PrismaClient();
