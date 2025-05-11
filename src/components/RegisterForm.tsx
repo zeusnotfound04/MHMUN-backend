@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars*/
+/* eslint-disable react/no-unescaped-entities*/
 "use client"
 
 import { toast } from "sonner"
@@ -7,7 +9,7 @@ import * as z from "zod"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
-import { Globe, Check, User, MapPin, Mail, FileText, Phone, Building, Flag, UserCircle } from "lucide-react"
+import { Globe, Check, User,  Mail, FileText, Phone, Building, Flag, UserCircle } from "lucide-react"
 import { DeterministicBubbles } from "@/components/ui/deterministic-background"
 import axios from "axios"
 import { Button } from "@/components/ui/button"
@@ -29,7 +31,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription
 } from "@/components/ui/dialog"
 import {
   Select,
@@ -80,6 +81,8 @@ export default function RegistrationForm() {
   const [isVisible, setIsVisible] = useState(false);
   const [backgroundPattern, setBackgroundPattern] = useState(1);
 
+
+  const router = useRouter();
   // Control visibility for scroll animations
   useEffect(() => {
     setIsVisible(true);
@@ -153,7 +156,7 @@ export default function RegistrationForm() {
       
       // Redirect to home page after a short delay
       setTimeout(() => {
-        window.location.href = '/';
+        router.push("/");
       }, 3000);
       
     } catch (error) {

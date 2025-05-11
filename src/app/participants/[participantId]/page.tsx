@@ -228,7 +228,7 @@ export default function ParticipantDetails() {
               className="px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg backdrop-blur-sm bg-black/30 border border-indigo-500/20 text-indigo-300 hover:bg-indigo-900/30 transition-colors"
             >
               Back to All Participants
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>
