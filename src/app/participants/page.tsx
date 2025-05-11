@@ -147,12 +147,13 @@ export default function ParticipantsList() {
                       {participant.committee && (
                         <div className="mt-2">
                           <span className="inline-block px-3 py-1 rounded-full text-xs bg-indigo-900/40 text-indigo-300 border border-indigo-500/30">
-                            {participant.committee}
+                             {committees.find(c => c.value === participant.committee)?.label || participant.committee}
                           </span>
                         </div>
                       )}
                       
                      
+
                     </div>
                   </Link>
                 </motion.div>
