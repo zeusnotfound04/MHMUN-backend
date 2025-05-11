@@ -9,6 +9,7 @@ export interface Participant {
   email: string;
   phone: string;
   qrImageUrl?: string | null;
+  profilePicture?: string | null;
   committee?: string | null;
   experience?: string | null;
   countryPreferences?: string | null;

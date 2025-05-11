@@ -825,15 +825,17 @@ export default function RegistrationForm() {
                     />
                   </motion.div>
 
+                  {/* Profile Picture Upload Field */}
                   <motion.div variants={itemVariants}>
                     <FormField
                       control={form.control}
                       name="profilePicture"
-                      render={({ field }) => (
+                      render={({ field: { value, onChange, ...fieldProps } }) => (
                         <FormItem>
                           <FormLabel className="flex items-center gap-2 font-medium">
                             <ImageIcon className="w-4 h-4" /> Profile Picture
                           </FormLabel>
+                          
                           <div className="space-y-4">
                             {profileImagePreview && (
                               <div className="flex justify-center">
@@ -848,46 +850,61 @@ export default function RegistrationForm() {
                               </div>
                             )}
                             
-                            <input
-                              type="file"
-                              accept="image/*"
-                              onChange={handleProfileImageChange}
-                              ref={fileInputRef}
-                              className="hidden"
-                              id="profile-upload"
-                            />
-                            
                             <FormControl>
-                              <motion.div 
-                                whileHover={{ scale: 1.01 }}
-                                whileTap={{ scale: 0.99 }}
-                                className="flex flex-col items-center"
-                              >
-                                <Button
-                                  type="button"
-                                  variant="outline"
-                                  onClick={() => fileInputRef.current?.click()}
-                                  className="w-full bg-slate-50 dark:bg-slate-900 border-dashed border-2 border-indigo-500/30 hover:border-indigo-500/60 text-indigo-400 hover:text-indigo-300 flex items-center justify-center py-6"
+                              <div>
+                                <input 
+                                  type="file" 
+                                  accept="image/*" 
+                                  ref={fileInputRef}
+                                  onChange={handleProfileImageChange}
+                                  className="hidden" 
+                                  id="profile-picture-upload" 
+                                />
+                                <motion.div
+                                  whileHover={{ scale: 1.01 }}
+                                  whileTap={{ scale: 0.99 }}
                                 >
-                                  <Upload className="w-5 h-5 mr-2" />
-                                  {profileImagePreview ? 'Change Photo' : 'Upload Photo'}
-                                </Button>
-                              </motion.div>
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    onClick={() => fileInputRef.current?.click()}
+                                    className="w-full bg-slate-50 dark:bg-slate-900 border-dashed border-2 border-indigo-500/30 hover:border-indigo-500/60 text-indigo-400 hover:text-indigo-300 flex items-center justify-center py-6"
+                                    disabled={uploadingImage}
+                                  >
+                                    {uploadingImage ? (
+                                      <>
+                                        <div className="h-5 w-5 border-2 border-t-transparent border-indigo-500 animate-spin rounded-full mr-2"></div>
+                                        Uploading...
+                                      </>
+                                    ) : profileImagePreview ? (
+                                      <>
+                                        <Upload className="w-5 h-5 mr-2" />
+                                        Change Photo
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Upload className="w-5 h-5 mr-2" />
+                                        Upload Photo
+                                      </>
+                                    )}
+                                  </Button>
+                                </motion.div>
+                              </div>
                             </FormControl>
                             
                             <FormDescription>
-                              Upload a profile picture (max 2MB, JPG or PNG)
+                              Upload a profile picture (max 2MB, JPG, PNG or GIF)
                             </FormDescription>
                             <FormMessage />
                           </div>
-                          <input
-                            type="hidden"
-                            {...field}
-                          />
+                          
+                          {/* Hidden input to store the uploaded image URL */}
+                          <input type="hidden" {...fieldProps} value={value} />
                         </FormItem>
                       )}
                     />
                   </motion.div>
+                  
                 </motion.div>
                   
                 <motion.div

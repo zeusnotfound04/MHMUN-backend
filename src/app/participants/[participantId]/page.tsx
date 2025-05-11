@@ -90,11 +90,22 @@ export default function ParticipantDetails() {
                 <p className="text-red-400 text-xl">{error}</p>
               </div>
             ) : participant ? (
-              <div className="p-4 md:p-8">
-                <div className="flex flex-col items-center text-center mb-6 md:mb-8">
-                  <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-indigo-600/20 mb-4">
-                    <UserCircle className="w-12 h-12 md:w-14 md:h-14 text-indigo-400" />
-                  </div>
+              <div className="p-4 md:p-8">              <div className="flex flex-col items-center text-center mb-6 md:mb-8">
+                  {participant.profilePicture ? (
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-indigo-600/20 mb-4 overflow-hidden border-2 border-indigo-500/50">
+                      <Image 
+                        src={participant.profilePicture} 
+                        alt={participant.name} 
+                        width={96} 
+                        height={96}
+                        className="w-full h-full object-cover" 
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-indigo-600/20 mb-4">
+                      <UserCircle className="w-12 h-12 md:w-14 md:h-14 text-indigo-400" />
+                    </div>
+                  )}
                   <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
                     {participant.name}
                   </h1>
