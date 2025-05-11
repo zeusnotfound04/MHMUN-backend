@@ -18,7 +18,7 @@ datasource db {
 
 
 model Participant {
-  id                 String   @id @default(uuid())
+  id                 String   @unique @id
   name               String
   school             String
   email              String   

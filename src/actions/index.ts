@@ -2,7 +2,7 @@
 import { createCanvas, registerFont } from 'canvas';
 import QRCode from 'qrcode';
 import { UTApi } from 'uploadthing/server';
-import { v4 as uuidv4 } from 'uuid';
+
 import path from 'path';
 import fs from 'fs';
 
@@ -18,9 +18,8 @@ try {
   console.error('Error loading Poppins font:', error);
 }
 
-export async function generateQRCodeWithFormId(formId: string): Promise<string> {
-  const qrCode = uuidv4();
-  const qrData = `${process.env.BASE_URL}/participants/${qrCode}`;
+export async function generateQRCodeWithFormId(formId: string, participantId: string): Promise<string> {
+  const qrData = `${process.env.BASE_URL}/participants/${participantId}`;
 
   const canvasWidth = 500;
   const canvasHeight = 650;
@@ -51,10 +50,9 @@ export async function generateQRCodeWithFormId(formId: string): Promise<string> 
     ctx.font = 'bold 45px Arial, sans-serif';
   }
   ctx.textAlign = 'center';
-  ctx.fillText(formId, canvasWidth / 2, 580); 
-  const imageBuffer = canvas.toBuffer('image/png')
+  ctx.fillText(formId, canvasWidth / 2, 580);   const imageBuffer = canvas.toBuffer('image/png')
 
-  const file = new File([new Uint8Array(imageBuffer)], `qr-${qrCode}.png`, {
+  const file = new File([new Uint8Array(imageBuffer)], `qr-${participantId}.png`, {
   type: 'image/png',
 });
 

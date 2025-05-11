@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateQRCodeWithFormId } from "@/actions";
 import { z } from "zod";
-
+import { v4 as uuidv4 } from 'uuid';
 interface ParticipantModel {
   id: string;
   name: string;
@@ -143,11 +143,13 @@ export async function POST(request: Request) {
     
     console.log("Form data:", validation.data);
 
-    const qrImageUrl = await generateQRCodeWithFormId(formId);
+    const participantId =  uuidv4();
+    const qrImageUrl = await generateQRCodeWithFormId(formId , participantId); ;
     console.log("QR Code image URL:", qrImageUrl);
 
     const participant = await prisma.participant.create({
       data: {
+        id: participantId,
         name,
         email,
         phone,
