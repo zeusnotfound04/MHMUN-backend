@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Globe } from "lucide-react";
 import Link from "next/link";
@@ -27,18 +28,18 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/register" 
+            <Button
+              onClick={() => window.location.href = "/register"}
               className="px-8 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors"
             >
               Register Now
-            </Link>
-            <Link 
-              href="/participants" 
+            </Button>
+            <Button
+              onClick={() => window.location.href = "/participants"}
               className="px-8 py-3 rounded-xl border border-indigo-500/40 text-indigo-300 hover:bg-indigo-900/30 transition-colors"
             >
               View Participants
-            </Link>
+            </Button>
           </div>
         </div>
         
