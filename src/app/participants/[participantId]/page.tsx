@@ -197,15 +197,18 @@ export default function ParticipantDetails() {
                     </div>
                   )}
 
-                  {/* QR Code - Responsive sizing */}
-                  {participant.qrImageUrl && (
+                  {/* QR Code - Responsive sizing */}                  {participant.qrImageUrl && (
                     <div className="mt-4 md:mt-6 flex flex-col items-center">
                       <h3 className="text-base md:text-lg font-medium text-white mb-3 md:mb-4">Registration QR Code</h3>
-                      <Image 
-                        src={participant.qrImageUrl} 
-                        alt="Registration QR Code"
-                        className="w-32 h-32 md:w-48 md:h-48 rounded-lg border-2 border-indigo-500/30" 
-                      />
+                      <div className="rounded-lg border-2 border-indigo-500/30 overflow-hidden">
+                        <Image 
+                          src={participant.qrImageUrl} 
+                          alt="Registration QR Code"
+                          width={240}
+                          height={280}
+                          className="object-contain" 
+                        />
+                      </div>
                     </div>
                   )}
                 </div>

@@ -21,36 +21,49 @@ try {
 export async function generateQRCodeWithFormId(formId: string, participantId: string): Promise<string> {
   const qrData = `${process.env.BASE_URL}/participants/${participantId}`;
 
-  const canvasWidth = 500;
-  const canvasHeight = 650;
+  // Make canvas more square for better proportions (600x600)
+  const canvasWidth = 600;
+  const canvasHeight = 700;
   const canvas = createCanvas(canvasWidth, canvasHeight);
   const ctx = canvas.getContext('2d');
 
-
+  // Fill background
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-  const qrCanvas = createCanvas(460, 460);
+  // Create QR code with better margins
+  const qrSize = 500; // Slightly larger QR code
+  const qrCanvas = createCanvas(qrSize, qrSize);
   await QRCode.toCanvas(qrCanvas, qrData, {
-    margin: 0,
-    width: 460,
+    margin: 1, // Small margin to prevent edge clipping
+    width: qrSize,
     color: {
       dark: '#000000',
       light: '#ffffff',
     },
+    errorCorrectionLevel: 'H', // High error correction for better scanning
   });
-
+  // Center QR code perfectly on canvas
   const qrX = (canvasWidth - qrCanvas.width) / 2;
-  ctx.drawImage(qrCanvas, qrX, 40);
+  const qrY = 50; // Position from top
+  ctx.drawImage(qrCanvas, qrX, qrY);
 
+  // Draw a subtle border around QR code for better definition
+  ctx.strokeStyle = '#e0e0e0';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(qrX - 2, qrY - 2, qrCanvas.width + 4, qrCanvas.width + 4);
+
+  // Text styling
   ctx.fillStyle = '#000000';
   try {
-    ctx.font = 'bold 45px Poppins, Arial, sans-serif';
+    ctx.font = 'bold 40px Poppins, Arial, sans-serif';
   } catch (error) {
-    ctx.font = 'bold 45px Arial, sans-serif';
+    ctx.font = 'bold 40px Arial, sans-serif';
   }
   ctx.textAlign = 'center';
-  ctx.fillText(formId, canvasWidth / 2, 580);   const imageBuffer = canvas.toBuffer('image/png')
+  ctx.fillText(formId, canvasWidth / 2, 610);
+  
+  const imageBuffer = canvas.toBuffer('image/png')
 
   const file = new File([new Uint8Array(imageBuffer)], `qr-${participantId}.png`, {
   type: 'image/png',
