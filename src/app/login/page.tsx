@@ -41,7 +41,7 @@ export default function Login() {
             Welcome Back
           </h1>
           <p className="text-lg text-gray-300 max-w-md mx-auto lg:mx-0">
-            Log in to access the Model Himalayan MUN Conference portal and manage your conference experience.
+            Log in to access the Mahatma Hansraj Model United Nations Conference portal and manage your conference experience.
           </p>
         </div>
         

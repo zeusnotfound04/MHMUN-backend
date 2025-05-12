@@ -24,10 +24,10 @@ export default function Home() {
         {/* Hero content */}
         <div className="text-center max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-6">
-            MHMUN Conference Portal
+            Mahatma Hansraj Model United Nations 2025 
           </h1>
           <p className="text-lg text-gray-300 mb-10">
-            Welcome to the Model United Nations conference management portal
+            Welcome to the Mahatma Hansraj Model United Nations conference management portal
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
