@@ -112,8 +112,8 @@ const InfoItem = memo(({ icon: Icon, label, value }: InfoItemProps): ReactElemen
       <Icon className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
     </div>
     <div className="min-w-0">
-      <p className={`text-gray-400 text-xs font-bold md:text-sm ${poppins.className}`}>{label}</p>
-      <p className="text-white text-base md:text-lg truncate">{value}</p>
+      <p className={`text-gray-400 text-xs font-medium md:text-sm `}>{label}</p>
+      <p className={`text-white text-base font-bold md:text-lg truncate ${poppins.className}`}>{value}</p>
     </div>
   </div>
 ));

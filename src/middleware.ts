@@ -7,7 +7,7 @@ export async function middleware(req:NextRequest) {
 
   try {
     const token = await getToken({req , secret : process.env.NEXTAUTH_SECRET})
-   console.log("Middleware Token :::: " , token)
+  //  console.log("Middleware Token :::: " , token)
     const registerRouteRegex = /^\/register(\/|$)/;
     const participantsRouteRegex = /^\/participants$/;
     // const participantDetailRouteRegex = /^\/participants\/[^/]+$/;
