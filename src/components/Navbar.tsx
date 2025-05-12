@@ -3,6 +3,7 @@
 import { User } from "next-auth";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { 
@@ -12,43 +13,37 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
-import { Globe, LogOut, Menu, User as UserIcon } from "lucide-react";
+import { LogOut, Menu, User as UserIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export function Navbar() {
   const { data: session } = useSession();
   const user = session?.user as User | undefined;
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  // Handle scroll effect for navbar transparency
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Navigation links
   const navLinks = [
     { name: "Home", href: "/" },
     // Add more navigation links as needed
-  ];  return (
+  ];
+
+  return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 bg-black ${
-        isScrolled ? "border-b border-white/10 backdrop-blur-sm" : ""
-      }`}
+      className="fixed top-0 w-full z-50 bg-gradient-to-r from-blue-950 to-black border-b border-white/10"
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo and site name */}
         <div className="flex items-center space-x-2">
           <Link href="/" className="flex items-center space-x-2">
-            <Globe className="h-6 w-6 text-blue-400" />
+            <Image 
+              src="/logo/logo.jpg" 
+              alt="MHMUN Logo" 
+              width={32} 
+              height={32}
+              className="h-8 w-auto"
+            />
             <span className="font-bold text-xl text-white">MHMUN</span>
           </Link>
         </div>
@@ -71,7 +66,8 @@ export function Navbar() {
 
           {/* Auth buttons */}
           <div className="flex items-center space-x-4">
-            {user ? (              <DropdownMenu>
+            {user ? (
+              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button 
                     variant="ghost" 
@@ -106,7 +102,8 @@ export function Navbar() {
               </DropdownMenu>
             ) : (
               <>
-                <Link href="/login">                  <Button 
+                <Link href="/login">
+                  <Button 
                     variant="ghost" 
                     size="sm" 
                     className="text-white hover:bg-blue-500/10"
@@ -149,7 +146,13 @@ export function Navbar() {
                     className="flex items-center space-x-2" 
                     onClick={() => setIsMobileOpen(false)}
                   >
-                    <Globe className="h-6 w-6 text-blue-400" />
+                    <Image 
+                      src="/logo.png" 
+                      alt="MHMUN Logo" 
+                      width={24} 
+                      height={24}
+                      className="h-6 w-auto"
+                    />
                     <span className="font-bold text-xl">MHMUN</span>
                   </Link>
                 </div>
