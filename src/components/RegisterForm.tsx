@@ -99,10 +99,11 @@ const formSchema = z.object({
   school: z.string().min(1, "School name is required"),
   class: z.string().min(1, "Class is required"),
   email: z.string().email("Please enter a valid email address"),
+  portfolio: z.string().min(1, "Portfolio is required"),
   formId: z.string().min(1, "Form ID is required"),
   phone: z.string().min(10, "Please enter a valid phone number").max(15),
   committee: z.string().min(1, "Please select a committee"),
-  
+
   profilePicture: z.string().optional()
 });
 
@@ -154,6 +155,7 @@ export default function RegistrationForm() {
       class: "",
       email: "",
       formId: "",
+      portfolio : "",
       phone: "",
       committee: "",
       profilePicture: ""
@@ -539,6 +541,36 @@ export default function RegistrationForm() {
         />
       </motion.div>
 
+          {/* Portfolio field */}
+      <motion.div variants={itemVariants}>
+        <FormField
+          control={form.control}
+          name="portfolio"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="flex items-center gap-2 font-medium">
+                <FileText className="w-4 h-4" /> Portfolio
+              </FormLabel>
+              <FormControl>
+                <motion.div
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                >
+                  <Input 
+                    placeholder="Your unique form ID"
+                    className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 focus:ring-blue-500 transition-all"
+                    {...field} 
+                  />
+                </motion.div>
+              </FormControl>
+              <FormDescription>
+                This is a Portfolio which you will be using for the conference
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </motion.div>
       {/* Profile Picture field */}
       <motion.div variants={itemVariants}>
         <FormField

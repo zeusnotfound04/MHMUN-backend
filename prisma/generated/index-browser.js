@@ -145,6 +145,7 @@ exports.Prisma.ParticipantScalarFieldEnum = {
   email: 'email',
   formId: 'formId',
   phone: 'phone',
+  portfolio: 'portfolio',
   qrImageUrl: 'qrImageUrl',
   committee: 'committee',
   createdAt: 'createdAt',

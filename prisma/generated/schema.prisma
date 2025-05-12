@@ -49,11 +49,9 @@ model Participant {
   email          String
   formId         String   @unique
   phone          String
+  portfolio      String
   qrImageUrl     String
   committee      String?
-  // experience         String?
-  // countryPreferences String?
-  // delegationType    String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }

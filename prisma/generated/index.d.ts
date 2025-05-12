@@ -3245,6 +3245,7 @@ export namespace Prisma {
     email: string | null
     formId: string | null
     phone: string | null
+    portfolio: string | null
     qrImageUrl: string | null
     committee: string | null
     createdAt: Date | null
@@ -3260,6 +3261,7 @@ export namespace Prisma {
     email: string | null
     formId: string | null
     phone: string | null
+    portfolio: string | null
     qrImageUrl: string | null
     committee: string | null
     createdAt: Date | null
@@ -3275,6 +3277,7 @@ export namespace Prisma {
     email: number
     formId: number
     phone: number
+    portfolio: number
     qrImageUrl: number
     committee: number
     createdAt: number
@@ -3292,6 +3295,7 @@ export namespace Prisma {
     email?: true
     formId?: true
     phone?: true
+    portfolio?: true
     qrImageUrl?: true
     committee?: true
     createdAt?: true
@@ -3307,6 +3311,7 @@ export namespace Prisma {
     email?: true
     formId?: true
     phone?: true
+    portfolio?: true
     qrImageUrl?: true
     committee?: true
     createdAt?: true
@@ -3322,6 +3327,7 @@ export namespace Prisma {
     email?: true
     formId?: true
     phone?: true
+    portfolio?: true
     qrImageUrl?: true
     committee?: true
     createdAt?: true
@@ -3410,6 +3416,7 @@ export namespace Prisma {
     email: string
     formId: string
     phone: string
+    portfolio: string
     qrImageUrl: string
     committee: string | null
     createdAt: Date
@@ -3442,6 +3449,7 @@ export namespace Prisma {
     email?: boolean
     formId?: boolean
     phone?: boolean
+    portfolio?: boolean
     qrImageUrl?: boolean
     committee?: boolean
     createdAt?: boolean
@@ -3457,6 +3465,7 @@ export namespace Prisma {
     email?: boolean
     formId?: boolean
     phone?: boolean
+    portfolio?: boolean
     qrImageUrl?: boolean
     committee?: boolean
     createdAt?: boolean
@@ -3472,6 +3481,7 @@ export namespace Prisma {
     email?: boolean
     formId?: boolean
     phone?: boolean
+    portfolio?: boolean
     qrImageUrl?: boolean
     committee?: boolean
     createdAt?: boolean
@@ -3487,13 +3497,14 @@ export namespace Prisma {
     email?: boolean
     formId?: boolean
     phone?: boolean
+    portfolio?: boolean
     qrImageUrl?: boolean
     committee?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profilePicture" | "class" | "school" | "email" | "formId" | "phone" | "qrImageUrl" | "committee" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
+  export type ParticipantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "profilePicture" | "class" | "school" | "email" | "formId" | "phone" | "portfolio" | "qrImageUrl" | "committee" | "createdAt" | "updatedAt", ExtArgs["result"]["participant"]>
 
   export type $ParticipantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Participant"
@@ -3507,6 +3518,7 @@ export namespace Prisma {
       email: string
       formId: string
       phone: string
+      portfolio: string
       qrImageUrl: string
       committee: string | null
       createdAt: Date
@@ -3942,6 +3954,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Participant", 'String'>
     readonly formId: FieldRef<"Participant", 'String'>
     readonly phone: FieldRef<"Participant", 'String'>
+    readonly portfolio: FieldRef<"Participant", 'String'>
     readonly qrImageUrl: FieldRef<"Participant", 'String'>
     readonly committee: FieldRef<"Participant", 'String'>
     readonly createdAt: FieldRef<"Participant", 'DateTime'>
@@ -4357,6 +4370,7 @@ export namespace Prisma {
     email: 'email',
     formId: 'formId',
     phone: 'phone',
+    portfolio: 'portfolio',
     qrImageUrl: 'qrImageUrl',
     committee: 'committee',
     createdAt: 'createdAt',
@@ -4576,6 +4590,7 @@ export namespace Prisma {
     email?: StringFilter<"Participant"> | string
     formId?: StringFilter<"Participant"> | string
     phone?: StringFilter<"Participant"> | string
+    portfolio?: StringFilter<"Participant"> | string
     qrImageUrl?: StringFilter<"Participant"> | string
     committee?: StringNullableFilter<"Participant"> | string | null
     createdAt?: DateTimeFilter<"Participant"> | Date | string
@@ -4591,6 +4606,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    portfolio?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -4609,6 +4625,7 @@ export namespace Prisma {
     school?: StringFilter<"Participant"> | string
     email?: StringFilter<"Participant"> | string
     phone?: StringFilter<"Participant"> | string
+    portfolio?: StringFilter<"Participant"> | string
     qrImageUrl?: StringFilter<"Participant"> | string
     committee?: StringNullableFilter<"Participant"> | string | null
     createdAt?: DateTimeFilter<"Participant"> | Date | string
@@ -4624,6 +4641,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    portfolio?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -4645,6 +4663,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Participant"> | string
     formId?: StringWithAggregatesFilter<"Participant"> | string
     phone?: StringWithAggregatesFilter<"Participant"> | string
+    portfolio?: StringWithAggregatesFilter<"Participant"> | string
     qrImageUrl?: StringWithAggregatesFilter<"Participant"> | string
     committee?: StringNullableWithAggregatesFilter<"Participant"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Participant"> | Date | string
@@ -4775,6 +4794,7 @@ export namespace Prisma {
     email: string
     formId: string
     phone: string
+    portfolio: string
     qrImageUrl: string
     committee?: string | null
     createdAt?: Date | string
@@ -4790,6 +4810,7 @@ export namespace Prisma {
     email: string
     formId: string
     phone: string
+    portfolio: string
     qrImageUrl: string
     committee?: string | null
     createdAt?: Date | string
@@ -4805,6 +4826,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    portfolio?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
     committee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4820,6 +4842,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    portfolio?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
     committee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4835,6 +4858,7 @@ export namespace Prisma {
     email: string
     formId: string
     phone: string
+    portfolio: string
     qrImageUrl: string
     committee?: string | null
     createdAt?: Date | string
@@ -4850,6 +4874,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    portfolio?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
     committee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4865,6 +4890,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     formId?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    portfolio?: StringFieldUpdateOperationsInput | string
     qrImageUrl?: StringFieldUpdateOperationsInput | string
     committee?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5038,6 +5064,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    portfolio?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrder
     createdAt?: SortOrder
@@ -5053,6 +5080,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    portfolio?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrder
     createdAt?: SortOrder
@@ -5068,6 +5096,7 @@ export namespace Prisma {
     email?: SortOrder
     formId?: SortOrder
     phone?: SortOrder
+    portfolio?: SortOrder
     qrImageUrl?: SortOrder
     committee?: SortOrder
     createdAt?: SortOrder
