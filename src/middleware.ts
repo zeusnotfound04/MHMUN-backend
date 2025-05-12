@@ -10,7 +10,7 @@ export async function middleware(req:NextRequest) {
    console.log("Middleware Token :::: " , token)
     const registerRouteRegex = /^\/register(\/|$)/;
     const participantsRouteRegex = /^\/participants$/;
-    const participantDetailRouteRegex = /^\/participants\/[^/]+$/;
+    // const participantDetailRouteRegex = /^\/participants\/[^/]+$/;
 
 
 
