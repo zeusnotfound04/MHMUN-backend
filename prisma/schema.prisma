@@ -49,6 +49,7 @@ model Participant {
   email              String   
   formId             String   @unique
   phone              String
+  
   portfolio           String
   qrImageUrl         String  
   committee          String?  

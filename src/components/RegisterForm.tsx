@@ -557,7 +557,7 @@ export default function RegistrationForm() {
                   whileTap={{ scale: 0.99 }}
                 >
                   <Input 
-                    placeholder="Your unique form ID"
+                    placeholder="Your Portfolio name"
                     className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 focus:ring-blue-500 transition-all"
                     {...field} 
                   />
