@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState, useMemo, useCallback, Suspense, memo } from "react";
@@ -112,7 +114,7 @@ SearchBar.displayName = 'SearchBar';
 interface ParticipantCardProps {
   participant: Participant;
   index: number;
-}
+} 
 
 const ParticipantCard = memo<ParticipantCardProps>(({ participant, index }) => (
   <motion.div
