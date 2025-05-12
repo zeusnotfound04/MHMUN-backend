@@ -27,11 +27,11 @@ export async function middleware(req:NextRequest) {
       }
     }
 
-    if (participantDetailRouteRegex.test(req.nextUrl.pathname)) {
-       if (!token || token.role!== "ADMIN") {
-        return NextResponse.redirect( new URL("/" , req.url))
-      }
-    }
+    // if (participantDetailRouteRegex.test(req.nextUrl.pathname)) {
+    //    if (!token || token.role!== "ADMIN") {
+    //     return NextResponse.redirect( new URL("/" , req.url))
+    //   }
+    // }
 
     return NextResponse.next();
 
