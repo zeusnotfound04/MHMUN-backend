@@ -3,6 +3,11 @@
 import { motion } from "framer-motion";
 import React from "react";
 
+// Helper function to ensure consistent number formatting
+const formatNumber = (num: number) => {
+  return Number(num.toFixed(4));
+};
+
 // Deterministic positions for server-side rendering to match client rendering
 const generateDeterministicBubble = (index: number, total: number) => {
   // Use deterministic algorithm instead of Math.random
@@ -18,35 +23,37 @@ const generateDeterministicBubble = (index: number, total: number) => {
   const size = 50 + (index % 5) * 25;
   
   return {
-    left: `${left.toFixed(15)}%`,
-    top: `${top.toFixed(15)}%`,
-    width: `${size}px`,
-    height: `${size}px`,
-    duration: 15 + (index % 10),
-    delay: index * 0.5
+    // Use consistent precision to ensure server and client render the same values
+    left: `${formatNumber(left)}%`,
+    top: `${formatNumber(top)}%`,
+    width: `${formatNumber(size)}px`,
+    height: `${formatNumber(size)}px`,
+    duration: formatNumber(15 + (index % 10)),
+    delay: formatNumber(index * 0.5)
   };
 };
 
 function DeterministicBubbles({ pattern = 1 }: { pattern?: 1 | 2 | 3 }) {
   // Precomputed patterns to avoid hydration mismatches
-  const patterns = {
-    1: (
-      <motion.div 
+  const patterns = {    1: (      <motion.div 
         className="absolute inset-0 opacity-20 pointer-events-none"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
-        transition={{ duration: 2 }}
+        animate={{ opacity: formatNumber(0.15) }}
+        transition={{ duration: formatNumber(2) }}
       >
         {Array.from({ length: 20 }).map((_, i) => {
           const position = generateDeterministicBubble(i, 20);
           return (
             <motion.div 
               key={`bubble-${i}`}
-              className="absolute rounded-full bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400"              style={{
+              className="absolute rounded-full bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400"
+              style={{
                 left: position.left,
                 top: position.top,
                 width: position.width,
-                height: position.height
+                height: position.height,
+                opacity: 0, // Explicitly set initial opacity as number not string
+                transform: 'scale(0)' // Explicitly set initial transform
               }}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ 
@@ -65,21 +72,20 @@ function DeterministicBubbles({ pattern = 1 }: { pattern?: 1 | 2 | 3 }) {
           );
         })}
       </motion.div>
-    ),
-    2: (
+    ),    2: (
       <motion.div 
         className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
-        transition={{ duration: 2 }}
-      >
-        {Array.from({ length: 30 }).map((_, i) => (
+        animate={{ opacity: formatNumber(0.15) }}
+        transition={{ duration: formatNumber(2) }}
+      >        {Array.from({ length: 30 }).map((_, i) => (
           <motion.div 
             key={`grid-${i}`}
             className="absolute bg-gradient-to-r from-blue-400 to-indigo-400"
             style={{
-              left: `${(i % 6) * 20}%`,
-              top: `${Math.floor(i / 6) * 20}%`,              width: "1px",
+              left: `${formatNumber((i % 6) * 20)}%`,
+              top: `${formatNumber(Math.floor(i / 6) * 20)}%`,
+              width: "1px",
               height: "1px",
               opacity: 0,
               transform: "scale(0)"
@@ -106,13 +112,12 @@ function DeterministicBubbles({ pattern = 1 }: { pattern?: 1 | 2 | 3 }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.15 }}
         transition={{ duration: 2 }}
-      >
-        {Array.from({ length: 10 }).map((_, i) => (
+      >        {Array.from({ length: 10 }).map((_, i) => (
           <motion.div 
             key={`wave-${i}`}
             className="absolute left-0 right-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
             style={{
-              top: `${i * 10 + (i % 5)}%`,
+              top: `${formatNumber(i * 10 + (i % 5))}%`,
               height: "1px",
               opacity: 0,
               transform: "scale(1)"
