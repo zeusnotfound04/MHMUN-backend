@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { useParticipants } from "@/lib/participants";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { poppins } from "@/lib/font";
 
 // Define TypeScript interfaces
 interface Participant {
@@ -138,7 +139,7 @@ const ParticipantCard = memo<ParticipantCardProps>(({ participant, index }) => (
             )}
           </div>
           <div>
-            <h3 className="text-white font-medium">{participant.name}</h3>
+            <h3 className={`text-white ${poppins.className} font-medium`}>{participant.name}</h3>
             <p className="text-sm text-gray-400">{participant.school}</p>
           </div>
         </div>
