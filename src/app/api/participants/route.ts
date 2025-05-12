@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateQRCodeWithFormId } from "@/actions";
 import { z } from "zod";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 interface ParticipantModel {
   id: string;
   name: string;
@@ -11,6 +11,7 @@ interface ParticipantModel {
   email: string;
   phone: string;
   qrImageUrl: string;
+  portfolio: string;
   formId: string;
   committee: string | null;
   createdAt: Date;
@@ -18,15 +19,16 @@ interface ParticipantModel {
 }
 
 const formSchema = z.object({
-    name: z.string().min(1),
-    school: z.string().min(1),
-    class: z.string().min(1),
-    email: z.string().email(),
-    formId: z.string().min(1),
-    phone: z.string(),
-    committee: z.string(),
-    delegationType: z.string().optional(),
-    profilePicture: z.string().optional()
+  name: z.string().min(1),
+  school: z.string().min(1),
+  class: z.string().min(1),
+  email: z.string().email(),
+  formId: z.string().min(1),
+  portfolio: z.string().min(1),
+  phone: z.string(),
+  committee: z.string(),
+  delegationType: z.string().optional(),
+  profilePicture: z.string().optional(),
 });
 
 type ParticipantFormData = z.infer<typeof formSchema>;
@@ -42,11 +44,11 @@ interface ParticipantSearchParams {
 interface ParticipantWhereInput {
   school?: {
     contains: string;
-    mode: 'insensitive';
+    mode: "insensitive";
   };
   name?: {
     contains: string;
-    mode: 'insensitive';
+    mode: "insensitive";
   };
   committee?: string;
 }
@@ -66,31 +68,31 @@ export async function GET(req: NextRequest) {
     const school = url.searchParams.get("school");
     const name = url.searchParams.get("name");
     const committee = url.searchParams.get("committee");
-    
+
     const whereClause: ParticipantWhereInput = {};
-    
+
     if (school) {
       whereClause.school = {
         contains: school,
-        mode: 'insensitive'
+        mode: "insensitive",
       };
     }
-    
+
     if (name) {
       whereClause.name = {
         contains: name,
-        mode: 'insensitive'
+        mode: "insensitive",
       };
     }
-    
+
     if (committee) {
       whereClause.committee = committee;
     }
-    
+
     const participants = await prisma.participant.findMany({
       where: whereClause,
       orderBy: {
-        createdAt: 'desc',
+        createdAt: "desc",
       },
     });
 
@@ -120,37 +122,41 @@ export async function POST(request: Request) {
       return NextResponse.json<ApiResponse<never>>(
         {
           error: "Invalid form data",
-          details: validation.error.errors
+          details: validation.error.errors,
         },
         { status: 400 }
       );
-    }    const { 
-      name, 
-      email, 
-      phone, 
+    }
+    const {
+      name,
+      email,
+      phone,
       school,
       class: studentClass,
-      formId, 
-      committee, 
-      profilePicture
+      portfolio,
+      formId,
+      committee,
+      profilePicture,
     }: ParticipantFormData = validation.data;
-    
+
     console.log("Form data:", validation.data);
 
-    const participantId =  uuidv4();
-    const qrImageUrl = await generateQRCodeWithFormId(formId , participantId); ;
-    console.log("QR Code image URL:", qrImageUrl);    const participant = await prisma.participant.create({
+    const participantId = uuidv4();
+    const qrImageUrl = await generateQRCodeWithFormId(formId, participantId);
+    console.log("QR Code image URL:", qrImageUrl);
+    const participant = await prisma.participant.create({
       data: {
         id: participantId,
         name,
         email,
         phone,
         school,
+        portfolio,
         class: studentClass,
         formId,
         qrImageUrl,
         committee,
-        profilePicture
+        profilePicture,
       },
     });
 
@@ -158,22 +164,22 @@ export async function POST(request: Request) {
       {
         message: "Participant created successfully",
         participant,
-        qrImageUrl
+        qrImageUrl,
       },
       { status: 201 }
     );
   } catch (error: unknown) {
     console.error("Error in registration route:", error);
-    
+
     // Type guard for Prisma errors
     const prismaError = error as PrismaError;
-    if (prismaError.code === 'P2002') {
+    if (prismaError.code === "P2002") {
       return NextResponse.json<ApiResponse<never>>(
         { error: "A participant with this form ID already exists" },
         { status: 409 }
       );
     }
-    
+
     return NextResponse.json<ApiResponse<never>>(
       { error: "Internal Server Error" },
       { status: 500 }
