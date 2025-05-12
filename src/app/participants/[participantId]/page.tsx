@@ -1,7 +1,7 @@
 "use client";
 
 import { SparklesCore } from "@/components/ui/sparkles";
-import { Globe, User,  Mail, Phone, Building, Flag, UserCircle, Calendar } from "lucide-react";
+import { Globe, User,  Mail, Phone, Building, Flag, UserCircle, Calendar, Briefcase } from "lucide-react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useParticipant } from "@/lib/participants";
@@ -162,6 +162,19 @@ export default function ParticipantDetails() {
                     </div>
 
                     <div className="space-y-4">
+                     {participant.class && (
+                        <div className="flex items-start space-x-3">
+                          <div className="rounded-full bg-indigo-600/20 p-2 mt-1 flex-shrink-0">
+                            <User className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-gray-400 text-xs md:text-sm">Class</p>
+                            <p className="text-white text-base md:text-lg truncate">
+                              <span className="font-medium text-indigo-400">Class:</span> {participant.class}
+                            </p>
+                          </div>
+                        </div>
+                      )}
 
                       {participant.committee && (
                         <div className="flex items-start space-x-3">
@@ -176,19 +189,19 @@ export default function ParticipantDetails() {
                           </div>
                         </div>
                       )}
-                      {participant.class && (
-                        <div className="flex items-start space-x-3">
-                          <div className="rounded-full bg-indigo-600/20 p-2 mt-1 flex-shrink-0">
-                            <User className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
-                          </div>
-                          <div className="min-w-0">
-                            <p className="text-gray-400 text-xs md:text-sm">Class</p>
-                            <p className="text-white text-base md:text-lg truncate">
-                              <span className="font-medium text-indigo-400">Class:</span> {participant.class}
-                            </p>
-                          </div>
-                        </div>
-                      )}
+                      {participant.portfolio && (
+  <div className="flex items-start space-x-3">
+    <div className="rounded-full bg-indigo-600/20 p-2 mt-1 flex-shrink-0">
+      <Briefcase className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
+    </div>
+    <div className="min-w-0">
+      <p className="text-gray-400 text-xs md:text-sm">Portfolio</p>
+      <p className="text-white text-base md:text-lg truncate">{participant.portfolio}</p>
+    </div>
+  </div>
+)}
+
+                     
 
 
 
