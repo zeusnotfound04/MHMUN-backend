@@ -7,11 +7,7 @@ interface RouteParams {
   }>;
 }
 
-
-export async function GET(
-  req: NextRequest,
-  { params }:  RouteParams 
-) {
+export async function GET(req: NextRequest, { params }: RouteParams) {
   try {
     const { participantsId } = await params;
 
@@ -38,14 +34,11 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  req: NextRequest,
-  { params }: RouteParams 
-) {
+export async function PUT(req: NextRequest, { params }: RouteParams) {
   try {
     const { participantsId } = await params;
     const body = await req.json();
-    
+
     const existingParticipant = await prisma.participant.findUnique({
       where: {
         id: participantsId,
@@ -83,10 +76,7 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  req: NextRequest,
-  { params }:RouteParams
-) {
+export async function DELETE(req: NextRequest, { params }: RouteParams) {
   try {
     const { participantsId } = await params;
 
