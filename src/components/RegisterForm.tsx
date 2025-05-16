@@ -655,10 +655,12 @@ export default function RegistrationForm() {
 
   // Create a function to handle dialog changes
   const handleDialogChange = useCallback((open: boolean, dialogType: 'success' | 'info') => {
-    if (dialogType === 'success') {
-      setFormState(prev => ({ ...prev, showSuccess: open }));
-    } else {
-      setFormState(prev => ({ ...prev, showInfoDialog: open }));
+    if (open) {
+      if (dialogType === 'success') {
+        setFormState(prev => ({ ...prev, showSuccess: open }));
+      } else {
+        setFormState(prev => ({ ...prev, showInfoDialog: open }));
+      }
     }
   }, []);
 
@@ -859,7 +861,7 @@ export default function RegistrationForm() {
       
       {/* Success Dialog */}
       <Dialog open={formState.showSuccess} onOpenChange={(open) => handleDialogChange(open, 'success')}>
-        <DialogContent className="bg-slate-900 border border-indigo-500/20 backdrop-blur-md relative sm:max-w-md">
+        <DialogContent className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-slate-900 border border-indigo-500/20 backdrop-blur-md sm:max-w-md">
           <motion.div 
             className="absolute -inset-1 bg-gradient-to-r from-green-500/20 via-indigo-500/20 to-green-500/20 rounded-xl blur-lg opacity-75 -z-10"
             animate={{ 
@@ -914,7 +916,7 @@ export default function RegistrationForm() {
       
       {/* Committee Info Dialog */}
       <Dialog open={formState.showInfoDialog} onOpenChange={(open) => handleDialogChange(open, 'info')}>
-        <DialogContent className="bg-slate-900 border border-indigo-500/20 backdrop-blur-md relative sm:max-w-md">
+        <DialogContent className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-slate-900 border border-indigo-500/20 backdrop-blur-md sm:max-w-md">
           <motion.div 
             className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20 rounded-xl blur-lg opacity-75 -z-10"
             animate={{ 
