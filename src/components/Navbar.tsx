@@ -153,7 +153,7 @@ export function Navbar() {
                       height={24}
                       className="h-6 w-auto"
                     />
-                    <span className="font-bold text-xl font-montserrat">MHMUN</span>
+                    <span className="font-bold text-xl font-montserrat">VBPS MUN</span>
                   </Link>
                 </div>
                 <nav className="flex flex-col p-6 space-y-6">

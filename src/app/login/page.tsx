@@ -35,7 +35,7 @@ export default function Login() {
         <div className="w-full lg:w-1/2 p-6 lg:p-10 text-center lg:text-left mb-8 lg:mb-0">
           <div className="flex items-center justify-center lg:justify-start mb-8">
             <Globe className="h-10 w-10 text-blue-400 mr-2" />
-            <h2 className="text-3xl font-bold text-white font-montserrat">MHMUN</h2>
+            <h2 className="text-3xl font-bold text-white font-montserrat">VBPS MUN</h2>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-4 font-playfair">
             Welcome Back
