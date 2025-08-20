@@ -23,23 +23,23 @@ export default function Home() {
         
         {/* Hero content */}
         <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-6">
-            Mahatma Hansraj Model United Nations 2025 
+          <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-6 font-playfair">
+            Vishwa Bharati Public School Dwarka, MUN 2025 
           </h1>
-          <p className="text-lg text-gray-300 mb-10">
-            Welcome to the Mahatma Hansraj Model United Nations conference management portal
+          <p className="text-lg text-gray-300 mb-10 font-open-sans">
+            Welcome to the Vishwa Bharati Public School Dwarka, MUN conference management portal
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={() => router.push("/register")}
-              className="px-8 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors"
+              className="px-8 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors font-inter"
             >
               Register Now
             </Button>
             <Button
               onClick={() => router.push("/participants")}
-              className="px-8 py-3 rounded-xl border border-indigo-500/40 text-indigo-300 hover:bg-indigo-900/30 transition-colors"
+              className="px-8 py-3 rounded-xl border border-indigo-500/40 text-indigo-300 hover:bg-indigo-900/30 transition-colors font-inter"
             >
               View Participants
             </Button>

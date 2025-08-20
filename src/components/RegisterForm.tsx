@@ -729,7 +729,7 @@ export default function RegistrationForm() {
             </div>
           </div>
           <motion.h1 
-            className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-2"
+            className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-2 font-playfair"
             animate={{ 
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
             }}
@@ -746,7 +746,7 @@ export default function RegistrationForm() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-xl text-indigo-200"
+            className="text-xl text-indigo-200 font-open-sans"
           >
             Delegate Registration Form
           </motion.p>
@@ -886,7 +886,7 @@ export default function RegistrationForm() {
                 <Check className="w-12 h-12 text-green-500" />
               </motion.div>
             </div>
-            <DialogTitle className="text-center text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-teal-400 to-indigo-400">
+            <DialogTitle className="text-center text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-teal-400 to-indigo-400 font-montserrat">
               Registration Successful!
             </DialogTitle>
           </DialogHeader>
@@ -931,7 +931,7 @@ export default function RegistrationForm() {
           />
           <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 absolute top-0 left-0 right-0" />
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">
+            <DialogTitle className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 font-montserrat">
               {currentInfo.title}
             </DialogTitle>
           </DialogHeader>

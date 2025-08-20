@@ -113,10 +113,10 @@ export function SignUpForm() {
   return (
     <div className="grid gap-6 w-full max-w-md mx-auto">
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+        <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 font-playfair">
           Create an Account
         </h1>
-        <p className="text-gray-300">
+        <p className="text-gray-300 font-open-sans">
           Enter your details below to create your account
         </p>
       </div>

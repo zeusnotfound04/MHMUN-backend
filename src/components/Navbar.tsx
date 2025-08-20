@@ -37,14 +37,14 @@ export function Navbar() {
         {/* Logo and site name */}
         <div className="flex items-center space-x-2">
           <Link href="/" className="flex items-center space-x-2">
-            <Image 
-              src="/logo/logo.jpg" 
-              alt="MHMUN Logo" 
-              width={32} 
+            <Image
+              src="/logo/logo.png"
+              alt="VBPS MUN Logo"
+              width={32}
               height={32}
               className="h-8 w-auto"
             />
-            <span className="font-bold text-xl text-white">MHMUN</span>
+            <span className="font-bold text-xl text-white font-montserrat">VBPS MUN</span>
           </Link>
         </div>
 
@@ -54,7 +54,7 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-blue-400 ${
+              className={`text-sm font-medium transition-colors hover:text-blue-400 font-inter ${
                 pathname === link.href
                   ? "text-blue-400"
                   : "text-gray-200"
@@ -153,7 +153,7 @@ export function Navbar() {
                       height={24}
                       className="h-6 w-auto"
                     />
-                    <span className="font-bold text-xl">MHMUN</span>
+                    <span className="font-bold text-xl font-montserrat">MHMUN</span>
                   </Link>
                 </div>
                 <nav className="flex flex-col p-6 space-y-6">

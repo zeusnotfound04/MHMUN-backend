@@ -35,23 +35,23 @@ export default function Login() {
         <div className="w-full lg:w-1/2 p-6 lg:p-10 text-center lg:text-left mb-8 lg:mb-0">
           <div className="flex items-center justify-center lg:justify-start mb-8">
             <Globe className="h-10 w-10 text-blue-400 mr-2" />
-            <h2 className="text-3xl font-bold text-white">MHMUN</h2>
+            <h2 className="text-3xl font-bold text-white font-montserrat">MHMUN</h2>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 mb-4 font-playfair">
             Welcome Back
           </h1>
-          <p className="text-lg text-gray-300 max-w-md mx-auto lg:mx-0">
-            Log in to access the Mahatma Hansraj Model United Nations Conference portal and manage your conference experience.
+          <p className="text-lg text-gray-300 max-w-md mx-auto lg:mx-0 font-open-sans">
+            Log in to access the Vishwa Bharati Public School Dwarka MUN portal and manage your conference experience.
           </p>
         </div>
         
         <div className="w-full lg:w-1/2 lg:p-8">
           <div className="bg-black/30 backdrop-blur-md p-8 rounded-xl border border-gray-800 shadow-xl max-w-md mx-auto">
             <div className="flex flex-col space-y-2 text-center mb-6">
-              <h2 className="text-2xl font-semibold tracking-tight text-white">
+              <h2 className="text-2xl font-semibold tracking-tight text-white font-inter">
                 Login to your account
               </h2>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-400 font-open-sans">
                 Enter your email and password to continue
               </p>
             </div>
